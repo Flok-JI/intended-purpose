@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intended Purpose Generator | Johner Institute</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'DM Sans', sans-serif; background-color: #f7f9fc; }
+        .johner-red { color: #cc0000; }
+        .johner-bg-red { background-color: #cc0000; }
+        .johner-btn-hover:hover { background-color: #aa0000; }
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .progress-bar { transition: width 0.5s ease-in-out; }
+        
+        input[type="checkbox"] { accent-color: #cc0000; width: 1.15rem; height: 1.15rem; cursor: pointer; }
+        .option-label { cursor: pointer; display: flex; align-items: center; padding: 0.75rem; border: 2px solid #f1f5f9; border-radius: 0.75rem; transition: all 0.2s; }
+        .option-label:hover { background-color: #f8fafc; border-color: #e2e8f0; }
+        input[type="checkbox"]:checked + span { font-weight: 600; color: #cc0000; }
+
+        /* PDF / PRINT STYLES */
+        @media print {
+            body { background-color: white !important; }
+            .no-print, button, .progress-bar, #progress, .flex.justify-between, .flex.justify-end { display: none !important; }
+            .bg-white { border: none !important; shadow: none !important; box-shadow: none !important; width: 100% !important; max-width: 100% !important; }
+            .p-10 { padding: 0 !important; }
+            footer { position: fixed; bottom: 0; width: 100%; border-top: 1px solid #eee; padding: 10px 0; }
+            .print-header { display: flex !important; margin-bottom: 30px; border-bottom: 2px solid #f1f5f9; padding-bottom: 20px; }
+            .result-box { border: 2px solid #e2e8f0 !important; background-color: #f8fafc !important; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-5 pb-20">
+
+    <div class="mb-10 text-center w-full max-w-2xl flex flex-col items-center print-header">
+        <div class="mb-6 flex items-center justify-center gap-8 h-20 w-full"> 
+            <img src="Johner_Institut_Logo_RGB.png" alt="Johner Institute Logo" class="h-full object-contain">
+            <div class="h-12 w-px bg-slate-200"></div> 
+            <img src="hpi-logo-colored.svg" alt="HPI Logo" class="h-full object-contain">
+        </div>
+        <div class="h-px w-full bg-slate-200 mb-8 no-print"></div>
+        <h1 class="text-3xl font-bold text-slate-800 uppercase tracking-tight">Formulation Stencil</h1>
+        <p class="text-slate-500 mt-1 text-lg no-print">Interactive Tool for Intended Purpose Definition</p>
+    </div>
+
+    <div class="bg-white max-w-2xl w-full rounded-2xl shadow-xl overflow-hidden border border-slate-100">
+        <div class="w-full bg-slate-100 h-1.5 no-print">
+            <div id="progress" class="progress-bar h-full johner-bg-red" style="width: 16%;"></div>
+        </div>
+
+        <div class="p-10" id="wizard">
+            
+            <div class="step active" id="step1">
+                <span class="text-xs font-bold uppercase tracking-widest johner-red">Step 1 / 6</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">What is the Product Name?</h2>
+                <input type="text" id="prodName" class="w-full p-4 border-2 border-slate-200 rounded-xl text-xl outline-none focus:border-[#cc0000] transition-colors" placeholder="e.g., Stroke Scan AI" autofocus>
+                <div class="flex justify-end mt-10">
+                    <button onclick="next(2)" class="johner-bg-red text-white px-10 py-3.5 rounded-xl font-bold johner-btn-hover transition-all shadow-md text-lg">Next →</button>
+                </div>
+            </div>
+
+            <div class="step" id="step2">
+                <span class="text-xs font-bold uppercase tracking-widest johner-red">Step 2 / 6</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">Select the Device Type(s):</h2>
+                <div class="grid grid-cols-1 gap-2">
+                    <label class="option-label"><input type="checkbox" name="devType" value="software tool"><span class="ml-3 text-lg">Software Tool</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="mobile medical app"><span class="ml-3 text-lg">Mobile Medical App</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="active medical device"><span class="ml-3 text-lg">Active Medical Device</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="surgical instrument"><span class="ml-3 text-lg">Surgical Instrument</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="implantable device"><span class="ml-3 text-lg">Implantable Device</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="diagnostic system"><span class="ml-3 text-lg">Diagnostic System</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="monitoring sensor"><span class="ml-3 text-lg">Monitoring Sensor</span></label>
+                </div>
+                <div class="flex justify-between mt-10">
+                    <button onclick="next(1)" class="text-slate-400 font-bold hover:text-slate-600 text-lg">← Back</button>
+                    <button onclick="next(3)" class="johner-bg-red text-white px-10 py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-lg">Next →</button>
+                </div>
+            </div>
+
+            <div class="step" id="step3">
+                <span class="text-xs font-bold uppercase tracking-widest johner-red">Step 3 / 6</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">Medical Purpose & Indication:</h2>
+                <div class="grid grid-cols-1 gap-2 mb-6">
+                    <label class="option-label"><input type="checkbox" name="purpose" value="diagnosis"><span class="ml-3 text-lg">Diagnosis</span></label>
+                    <label class="option-label"><input type="checkbox" name="purpose" value="therapy"><span class="ml-3 text-lg">Therapy</span></label>
+                    <label class="option-label"><input type="checkbox" name="purpose" value="monitoring"><span class="ml-3 text-lg">Monitoring</span></label>
+                    <label class="option-label"><input type="checkbox" name="purpose" value="prevention"><span class="ml-3 text-lg">Prevention</span></label>
+                    <label class="option-label"><input type="checkbox" name="purpose" value="alleviation"><span class="ml-3 text-lg">Alleviation</span></label>
+                </div>
+                <label class="block text-sm font-bold text-slate-500 mb-2 uppercase">Medical Indication (free form)</label>
+                <input type="text" id="diseaseInput" class="w-full p-4 border-2 border-slate-200 rounded-xl outline-none focus:border-[#cc0000] text-lg" placeholder="e.g., atrial fibrillation">
+                <div class="flex justify-between mt-10">
+                    <button onclick="next(2)" class="text-slate-400 font-bold hover:text-slate-600 text-lg">← Back</button>
+                    <button onclick="next(4)" class="johner-bg-red text-white px-10 py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-lg">Next →</button>
+                </div>
+            </div>
+
+            <div class="step" id="step4">
+                <span class="text-xs font-bold uppercase tracking-widest johner-red">Step 4 / 6</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">Select the Patient Population(s):</h2>
+                <div class="grid grid-cols-1 gap-2">
+                    <label class="option-label"><input type="checkbox" name="patient" value="adult patients"><span class="ml-3 text-lg">Adult Patients</span></label>
+                    <label class="option-label"><input type="checkbox" name="patient" value="pediatric patients"><span class="ml-3 text-lg">Pediatric Patients</span></label>
+                    <label class="option-label"><input type="checkbox" name="patient" value="elderly patients"><span class="ml-3 text-lg">Elderly Patients</span></label>
+                    <label class="option-label"><input type="checkbox" name="patient" value="infants"><span class="ml-3 text-lg">Infants</span></label>
+                </div>
+                <div class="flex justify-between mt-10">
+                    <button onclick="next(3)" class="text-slate-400 font-bold hover:text-slate-600 text-lg">← Back</button>
+                    <button onclick="next(5)" class="johner-bg-red text-white px-10 py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-lg">Next →</button>
+                </div>
+            </div>
+
+            <div class="step" id="step5">
+                <span class="text-xs font-bold uppercase tracking-widest johner-red">Step 5 / 6</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">Select the Intended User(s):</h2>
+                <div class="grid grid-cols-1 gap-2">
+                    <label class="option-label"><input type="checkbox" name="user" value="lay users"><span class="ml-3 text-lg">Lay Users</span></label>
+                    <label class="option-label"><input type="checkbox" name="user" value="medical professionals"><span class="ml-3 text-lg">Medical Professionals</span></label>
+                    <label class="option-label"><input type="checkbox" name="user" value="trained clinical staff"><span class="ml-3 text-lg">Trained Clinical Staff</span></label>
+                    <label class="option-label"><input type="checkbox" name="user" value="surgeons"><span class="ml-3 text-lg">Surgeons</span></label>
+                    <label class="option-label"><input type="checkbox" name="user" value="nurses"><span class="ml-3 text-lg">Nurses</span></label>
+                    <label class="option-label"><input type="checkbox" name="user" value="physiotherapists"><span class="ml-3 text-lg">Physiotherapists</span></label>
+                </div>
+                <div class="flex justify-between mt-10">
+                    <button onclick="next(4)" class="text-slate-400 font-bold hover:text-slate-600 text-lg">← Back</button>
+                    <button onclick="next(6)" class="johner-bg-red text-white px-10 py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-lg">Next →</button>
+                </div>
+            </div>
+
+            <div class="step" id="step6">
+                <span class="text-xs font-bold uppercase tracking-widest johner-red">Step 6 / 6</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">Select the Use Environment(s):</h2>
+                <div class="grid grid-cols-1 gap-2">
+                    <label class="option-label"><input type="checkbox" name="env" value="home care environment"><span class="ml-3 text-lg">Home Care Environment</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="clinical environment"><span class="ml-3 text-lg">Clinical Environment</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="hospitals"><span class="ml-3 text-lg">Hospitals</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="medical offices"><span class="ml-3 text-lg">Medical Offices</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="intensive care units"><span class="ml-3 text-lg">Intensive Care Units</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="operating rooms"><span class="ml-3 text-lg">Operating Rooms</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="emergency response settings"><span class="ml-3 text-lg">Emergency Response Settings</span></label>
+                </div>
+                <div class="flex justify-between mt-10">
+                    <button onclick="next(5)" class="text-slate-400 font-bold hover:text-slate-600 text-lg">← Back</button>
+                    <button onclick="finish()" class="johner-bg-red text-white px-10 py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-lg">Generate Result</button>
+                </div>
+            </div>
+
+            <div class="step text-center" id="result">
+                <div class="mb-6 inline-block p-4 bg-red-50 rounded-full border border-red-100 no-print">
+                    <svg class="w-10 h-10 johner-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Final Intended Purpose</h2>
+                
+                <div class="p-8 bg-slate-50 rounded-2xl border-2 border-slate-200 italic text-xl text-slate-700 leading-relaxed shadow-inner text-left mb-6 result-box">
+                    <span id="finalText"></span>
+                </div>
+
+                <p class="text-slate-500 text-sm mb-8 px-4 leading-relaxed">
+                    This tool generates the core sentence of your intended purpose. For final regulatory approval, this result must be supplemented with <strong>contraindications</strong> and <strong>clinical benefit (State of the Art)</strong>.
+                </p>
+
+                <div class="flex flex-col items-center justify-center border-t border-slate-100 pt-8 no-print">
+                    <button onclick="window.print()" class="mb-6 johner-bg-red text-white px-12 py-4 rounded-xl font-bold johner-btn-hover transition-all shadow-lg text-lg flex items-center gap-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Download PDF
+                    </button>
+                    
+                    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-3 text-center">Further Regulatory Information</h3>
+                    <a href="https://blog.johner-institute.com/regulatory-affairs/intended-purpose/" target="_blank" class="text-blue-600 hover:underline flex items-center font-medium">
+                        Johner Institute: Intended Purpose Guide 
+                        <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+
+                <button onclick="location.reload()" class="mt-10 text-sm font-bold johner-red hover:underline uppercase tracking-widest no-print">Start over</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="fixed bottom-0 left-0 w-full p-4 bg-slate-50 border-t border-slate-200 text-center text-slate-400 text-xs italic">
+        To be used exclusively for the course “Building Products for Digital Health” and is the property of Johner Institut GmbH. 
+    </footer>
+
+    <script>
+        let currentStepIndex = 1;
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                if (currentStepIndex < 6) {
+                    next(currentStepIndex + 1);
+                } else if (currentStepIndex === 6) {
+                    finish();
+                }
+            }
+        });
+
+        function next(s) {
+            currentStepIndex = s;
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            const target = document.getElementById('step' + s) || document.getElementById(s);
+            if(target) target.classList.add('active');
+            
+            const maxSteps = 6;
+            document.getElementById('progress').style.width = (s / maxSteps * 100) + '%';
+            
+            const input = target.querySelector('input[type="text"]');
+            if(input) input.focus();
+        }
+
+        function getCheckedList(name) {
+            let values = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
+            if (values.length === 0) return "";
+            if (values.length === 1) return values[0];
+            return values.slice(0, -1).join(", ") + " and " + values.slice(-1);
+        }
+
+        function finish() {
+            currentStepIndex = 7;
+            const name = document.getElementById('prodName').value.trim() || "[Product]";
+            const types = getCheckedList('devType') || "medical device";
+            const firstChar = types.trim().toLowerCase().charAt(0);
+            const article = ['a','e','i','o','u'].includes(firstChar) ? "an" : "a";
+            
+            const purposes = getCheckedList('purpose') || "[purpose]";
+            const disease = document.getElementById('diseaseInput').value.trim();
+            const patients = getCheckedList('patient') || "patients";
+            const users = getCheckedList('user') || "[users]";
+            const environments = getCheckedList('env') || "[environments]";
+
+            let purposePart = disease 
+                ? `It is intended for the <strong>${purposes} of ${disease}</strong> in <strong>${patients}</strong>. ` 
+                : `It is intended for <strong>${purposes}</strong> in <strong>${patients}</strong>. `;
+
+            const finalSentence = `The <strong>${name}</strong> is ${article} <strong>${types}</strong>. ${purposePart}It is used by <strong>${users}</strong> in <strong>${environments}</strong>.`;
+
+            document.getElementById('finalText').innerHTML = finalSentence;
+            
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            document.getElementById('result').classList.add('active');
+            document.getElementById('progress').style.width = '100%';
+        }
+    </script>
+</body>
+</html>
