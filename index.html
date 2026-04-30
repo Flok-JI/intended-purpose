@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intended Purpose Generator | Johner Institute</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'DM Sans', sans-serif; background-color: #f7f9fc; }
@@ -21,7 +22,6 @@
         .option-label:hover { background-color: #f8fafc; border-color: #e2e8f0; }
         input[type="checkbox"]:checked + span { font-weight: 600; color: #cc0000; }
 
-        /* PDF / PRINT STYLES */
         @media print {
             body { background-color: white !important; }
             .no-print, button, .progress-bar, #progress, .flex.justify-between, .flex.justify-end { display: none !important; }
@@ -52,7 +52,7 @@
         </div>
 
         <div class="p-10" id="wizard">
-            
+            <!-- Step 1-6 bleiben identisch -->
             <div class="step active" id="step1">
                 <span class="text-xs font-bold uppercase tracking-widest johner-red">Step 1 / 6</span>
                 <h2 class="text-2xl font-bold text-slate-800 mb-6">What is the Product Name?</h2>
@@ -153,61 +153,31 @@
                     <svg class="w-10 h-10 johner-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <h2 class="text-2xl font-bold text-slate-800 mb-2">Final Intended Purpose</h2>
-                
                 <div class="p-8 bg-slate-50 rounded-2xl border-2 border-slate-200 italic text-xl text-slate-700 leading-relaxed shadow-inner text-left mb-6 result-box">
                     <span id="finalText"></span>
                 </div>
-
-                <p class="text-slate-500 text-sm mb-8 px-4 leading-relaxed">
-                    This tool generates the core sentence of your intended purpose. For final regulatory approval, this result must be supplemented with <strong>contraindications</strong> and <strong>clinical benefit (State of the Art)</strong>.
-                </p>
-
-                <div class="flex flex-col items-center justify-center border-t border-slate-100 pt-8 no-print">
-                    <button onclick="window.print()" class="mb-6 johner-bg-red text-white px-12 py-4 rounded-xl font-bold johner-btn-hover transition-all shadow-lg text-lg flex items-center gap-2">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        Download PDF
-                    </button>
-                    
-                    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-3 text-center">Further Regulatory Information</h3>
-                    <a href="https://blog.johner-institute.com/regulatory-affairs/intended-purpose/" target="_blank" class="text-blue-600 hover:underline flex items-center font-medium">
-                        Johner Institute: Intended Purpose Guide 
-                        <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                    </a>
-                </div>
-
+                <p class="text-slate-500 text-sm mb-8 px-4 leading-relaxed">This tool generates the core sentence...</p>
+                <button onclick="window.print()" class="mb-6 johner-bg-red text-white px-12 py-4 rounded-xl font-bold johner-btn-hover shadow-lg text-lg no-print">Download PDF</button>
+                <br>
                 <button onclick="location.reload()" class="mt-10 text-sm font-bold johner-red hover:underline uppercase tracking-widest no-print">Start over</button>
             </div>
         </div>
     </div>
 
-    <footer class="fixed bottom-0 left-0 w-full p-4 bg-slate-50 border-t border-slate-200 text-center text-slate-400 text-xs italic">
-        To be used exclusively for the course “Building Products for Digital Health” and is the property of Johner Institut GmbH. 
-    </footer>
-
     <script>
-        let currentStepIndex = 1;
+        // Supabase Konfiguration
+        const SUPABASE_URL = 'https://icuwbibmhlqpmfgvjibp.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_mc1DYxcquuvbQXqb8xLJwQ_qfs-ccx9';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                if (currentStepIndex < 6) {
-                    next(currentStepIndex + 1);
-                } else if (currentStepIndex === 6) {
-                    finish();
-                }
-            }
-        });
+        let currentStepIndex = 1;
 
         function next(s) {
             currentStepIndex = s;
             document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-            const target = document.getElementById('step' + s) || document.getElementById(s);
+            const target = document.getElementById('step' + s);
             if(target) target.classList.add('active');
-            
-            const maxSteps = 6;
-            document.getElementById('progress').style.width = (s / maxSteps * 100) + '%';
-            
-            const input = target.querySelector('input[type="text"]');
-            if(input) input.focus();
+            document.getElementById('progress').style.width = (s / 6 * 100) + '%';
         }
 
         function getCheckedList(name) {
@@ -217,8 +187,7 @@
             return values.slice(0, -1).join(", ") + " and " + values.slice(-1);
         }
 
-        function finish() {
-            currentStepIndex = 7;
+        async function finish() {
             const name = document.getElementById('prodName').value.trim() || "[Product]";
             const types = getCheckedList('devType') || "medical device";
             const firstChar = types.trim().toLowerCase().charAt(0);
@@ -231,13 +200,30 @@
             const environments = getCheckedList('env') || "[environments]";
 
             let purposePart = disease 
-                ? `It is intended for the <strong>${purposes} of ${disease}</strong> in <strong>${patients}</strong>. ` 
-                : `It is intended for <strong>${purposes}</strong> in <strong>${patients}</strong>. `;
+                ? `It is intended for the ${purposes} of ${disease} in ${patients}. ` 
+                : `It is intended for ${purposes} in ${patients}. `;
 
-            const finalSentence = `The <strong>${name}</strong> is ${article} <strong>${types}</strong>. ${purposePart}It is used by <strong>${users}</strong> in <strong>${environments}</strong>.`;
+            const finalSentence = `The ${name} is ${article} ${types}. ${purposePart}It is used by ${users} in ${environments}.`;
 
-            document.getElementById('finalText').innerHTML = finalSentence;
-            
+            // HTML Version für die Anzeige (mit fettgedruckten Teilen)
+            const htmlSentence = finalSentence
+                .replace(name, `<strong>${name}</strong>`)
+                .replace(types, `<strong>${types}</strong>`)
+                .replace(purposes, `<strong>${purposes}</strong>`)
+                .replace(disease, `<strong>${disease}</strong>`)
+                .replace(patients, `<strong>${patients}</strong>`)
+                .replace(users, `<strong>${users}</strong>`)
+                .replace(environments, `<strong>${environments}</strong>`);
+
+            document.getElementById('finalText').innerHTML = htmlSentence;
+
+            // In Supabase speichern (nur Reintext)
+            const { error } = await supabaseClient
+                .from('submissions')
+                .insert([{ content: finalSentence }]);
+
+            if (error) console.error('Error saving to Supabase:', error);
+
             document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
             document.getElementById('result').classList.add('active');
             document.getElementById('progress').style.width = '100%';
