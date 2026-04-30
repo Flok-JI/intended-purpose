@@ -35,17 +35,17 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4 pb-20">
 
-    <!-- Responsive Header with Logos -->
-    <div class="mb-6 text-center w-full max-w-2xl flex flex-col items-center print-header">
-        <div class="mb-6 flex flex-wrap items-center justify-center gap-6 md:gap-8 min-h-[60px] w-full"> 
-            <img src="Johner_Institut_Logo_RGB.png" alt="Johner Institute Logo" class="h-14 md:h-12 object-contain">
-            <div class="hidden sm:block h-14 w-px bg-slate-200"></div> 
-            <img src="hpi-logo-colored.svg" alt="HPI Logo" class="h-12 md:h-14 object-contain">
+    <!-- Responsive Header Area -->
+    <div class="mb-8 text-center w-full max-w-2xl flex flex-col items-center">
+        <div class="mb-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 w-full"> 
+            <!-- Logos mit adaptiven Höhen -->
+            <img src="./Johner_Institut_Logo_RGB.png" alt="Johner Institute Logo" class="h-12 sm:h-16 md:h-20 object-contain">
+            
+            <!-- Trennlinie: Horizontal auf Mobile, Vertikal auf Desktop -->
+            <div class="h-px w-16 sm:h-12 sm:w-px bg-slate-200"></div> 
+            
+            <img src="./hpi-logo-colored.svg" alt="HPI Logo" class="h-12 sm:h-16 md:h-20 object-contain">
         </div>
-        <div class="h-px w-full bg-slate-200 mb-8 no-print"></div>
-        <h1 class="text-2xl md:text-3xl font-bold text-slate-800 uppercase tracking-tight">Formulation Stencil</h1>
-        <p class="text-slate-500 mt-1 text-base md:text-lg no-print">Interactive Tool for Intended Purpose Definition</p>
-    </div>
 
     <!-- Main Container (Mobile Responsive Width) -->
     <div class="bg-white w-full max-w-2xl rounded-2xl shadow-xl overflow-hidden border border-slate-100">
