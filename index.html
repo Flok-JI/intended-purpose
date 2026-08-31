@@ -190,6 +190,11 @@
     </footer>
 
     <script>
+        // Supabase Konfiguration
+        const SUPABASE_URL = 'https://icuwbibmhlqpmfgvjibp.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljdXdiaWJtaGxxcG1mZ3ZqaWJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0OTk1NDEsImV4cCI6MjA5MzA3NTU0MX0.8Yo8ueUcOEZt_ZEbIj_OvwCTQ2O3aOfhYxPWT1rq-OI';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         let currentStepIndex = 1;
 
         document.addEventListener('keydown', function(event) {
@@ -231,7 +236,7 @@
             return values.slice(0, -1).join(", ") + " and " + values.slice(-1);
         }
 
-        function finish() {
+        async function finish() {
             currentStepIndex = 7;
             const name = document.getElementById('prodName').value.trim() || "[Product]";
             const types = getCheckedList('devType') || "medical device";
@@ -242,7 +247,7 @@
             const disease = document.getElementById('diseaseInput').value.trim();
             const patients = getCheckedList('patient') || "patients";
             const users = getCheckedList('user') || "[users]";
-            const environments = getCheckedList('env') || "[environments]";
+            const environments = getCentents = getCheckedList('env') || "[environments]";
 
             let purposePart = disease 
                 ? `It is intended for the <strong>${purposes} of ${disease}</strong> in <strong>${patients}</strong>. ` 
@@ -255,6 +260,24 @@
             document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
             document.getElementById('result').classList.add('active');
             document.getElementById('progress').style.width = '100%';
+
+            // --- DATEN AUTOMATISCH IN SUPABASE SPEICHERN ---
+            const plainFinalText = finalSentence.replace(/<\/?strong>/g, '');
+            const textPayload = `Product: ${name}\nDevice Types: ${types}\nPurposes: ${purposes}\nIndication: ${disease || 'N/A'}\nPatients: ${patients}\nUsers: ${users}\nEnvironments: ${environments}\n\nFinal Output:\n${plainFinalText}`;
+
+            try {
+                const { error } = await supabaseClient
+                    .from('submissions')
+                    .insert([{ content: textPayload }]);
+
+                if (error) {
+                    console.error('Supabase Fehler beim Speichern:', error.message);
+                } else {
+                    console.log('Erfolgreich in Supabase gespeichert!');
+                }
+            } catch (err) {
+                console.error('Netzwerkfehler:', err);
+            }
         }
     </script>
 </body>
