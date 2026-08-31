@@ -6,6 +6,10 @@
     <title>Intended Purpose Generator | Johner Institute</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         body { font-family: 'DM Sans', sans-serif; background-color: #f7f9fc; }
         .johner-red { color: #cc0000; }
@@ -103,7 +107,7 @@
                 <h2 class="text-2xl font-bold text-slate-800 mb-6">Select the Population(s):</h2>
                 <div class="grid grid-cols-1 gap-2">
                     <label class="option-label"><input type="checkbox" name="patient" value="Adults (18+)"><span class="ml-3 text-lg">Adults (18+)</span></label>
-                    <label class="option-label"><input type="checkbox" name="patient" value="Children & Adolescents (<18)"><span class="ml-3 text-lg">Children & Adolescents (<18)</span></label>
+                    <label class="option-label"><input type="checkbox" name="patient" value="Children & Adolescents (<18)"><span class="ml-3 text-lg">Children & Adolescents (&lt;18)</span></label>
                     <label class="option-label"><input type="checkbox" name="patient" value="Older Adults (65+)"><span class="ml-3 text-lg">Older Adults (65+)</span></label>
                     <label class="option-label"><input type="checkbox" name="patient" value="Infants / Toddlers (0–3)"><span class="ml-3 text-lg">Infants / Toddlers (0–3)</span></label>
                 </div>
@@ -141,7 +145,7 @@
                     <label class="option-label"><input type="checkbox" name="env" value="intensive care units"><span class="ml-3 text-lg">Intensive Care Units</span></label>
                     <label class="option-label"><input type="checkbox" name="env" value="operating rooms"><span class="ml-3 text-lg">Operating Rooms</span></label>
                     <label class="option-label"><input type="checkbox" name="env" value="emergency response settings"><span class="ml-3 text-lg">Emergency Response Settings</span></label>
-		<label class="option-label"><input type="checkbox" name="env" value="Consumer Health & Well-Being Domain"><span class="ml-3 text-lg">Consumer Health & Well-Being Domain</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="Consumer Health & Well-Being Domain"><span class="ml-3 text-lg">Consumer Health & Well-Being Domain</span></label>
                 </div>
                 <div class="flex justify-between mt-10">
                     <button onclick="next(5)" class="text-slate-400 font-bold hover:text-slate-600 text-lg">← Back</button>
@@ -186,6 +190,11 @@
     </footer>
 
     <script>
+        // SUPABASE INITIALISIERUNG
+        const SUPABASE_URL = 'DEINE_SUPABASE_URL'; // Ersetzen mit deiner Supabase Project URL
+        const SUPABASE_KEY = 'DEIN_SUPABASE_ANON_KEY'; // Ersetzen mit deinem Public Anon Key
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
         let currentStepIndex = 1;
 
         document.addEventListener('keydown', function(event) {
@@ -218,7 +227,7 @@
             return values.slice(0, -1).join(", ") + " and " + values.slice(-1);
         }
 
-        function finish() {
+        async function finish() {
             currentStepIndex = 7;
             const name = document.getElementById('prodName').value.trim() || "[Product]";
             const types = getCheckedList('devType') || "medical device";
@@ -238,7 +247,34 @@
             const finalSentence = `The <strong>${name}</strong> is ${article} <strong>${types}</strong>. ${purposePart}It is used by <strong>${users}</strong> in <strong>${environments}</strong>.`;
 
             document.getElementById('finalText').innerHTML = finalSentence;
-            
+
+            // --- SUPABASE INGESTION (Speichern in 'submissions'-Tabelle) ---
+            const payload = JSON.stringify({
+                product_name: name,
+                device_types: types,
+                purposes: purposes,
+                indication: disease,
+                patients: patients,
+                users: users,
+                environments: environments,
+                final_intended_purpose: finalSentence.replace(/<\/?strong>/g, '')
+            });
+
+            try {
+                const { data, error } = await supabase
+                    .from('submissions')
+                    .insert([{ content: payload }]);
+
+                if (error) {
+                    console.error('Supabase Error:', error.message);
+                } else {
+                    console.log('Successfully saved to submissions table!');
+                }
+            } catch (err) {
+                console.error('Connection Error:', err);
+            }
+            // -------------------------------------------------------------
+
             document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
             document.getElementById('result').classList.add('active');
             document.getElementById('progress').style.width = '100%';
