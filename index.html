@@ -21,7 +21,7 @@
         .progress-bar { transition: width 0.5s ease-in-out; }
         
         input[type="checkbox"] { accent-color: #cc0000; width: 1.15rem; height: 1.15rem; cursor: pointer; flex-shrink: 0; }
-        .option-label { cursor: pointer; display: flex; align-items: center; padding: 0.75rem; border: 2px solid #f1f5f9; border-radius: 0.75rem; transition: all 0.2s; }
+        .option-label { cursor: pointer; display: flex; align-items: center; padding: 0.7rem 0.85rem; border: 2px solid #f1f5f9; border-radius: 0.75rem; transition: all 0.2s; }
         .option-label:hover { background-color: #f8fafc; border-color: #e2e8f0; }
         input[type="checkbox"]:checked + span { font-weight: 600; color: #cc0000; }
 
@@ -50,7 +50,7 @@
 
     <div class="bg-white max-w-2xl w-full rounded-2xl shadow-xl overflow-hidden border border-slate-100">
         <div class="w-full bg-slate-100 h-1.5 no-print">
-            <div id="progress" class="progress-bar h-full johner-bg-red" style="width: 16%;"></div>
+            <div id="progress" class="progress-bar h-full johner-bg-red" style="width: 16.6%;"></div>
         </div>
 
         <div class="p-6 sm:p-10" id="wizard">
@@ -58,8 +58,9 @@
             <!-- STEP 1 -->
             <div class="step active" id="step1">
                 <span class="text-xs font-bold uppercase tracking-widest johner-red">Schritt 1 / 6</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-5 sm:mb-6">Wie lautet der Produktname?</h2>
-                <input type="text" id="prodName" class="w-full p-3.5 sm:p-4 border-2 border-slate-200 rounded-xl text-lg sm:text-xl outline-none focus:border-[#cc0000] transition-colors" placeholder="z. B. Nexus App" autofocus>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Wie lautet der Produktname?</h2>
+                <p class="text-slate-500 text-sm mb-5">Gib den Arbeits- oder Projektnamen deiner App, Software oder Lösung ein.</p>
+                <input type="text" id="prodName" class="w-full p-3.5 sm:p-4 border-2 border-slate-200 rounded-xl text-lg sm:text-xl outline-none focus:border-[#cc0000] transition-colors" placeholder="z. B. CareFlow App oder Stroke Scan" autofocus>
                 <div class="flex justify-end mt-8 sm:mt-10">
                     <button type="button" id="btnNext1" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover transition-all shadow-md text-base sm:text-lg">Weiter →</button>
                 </div>
@@ -68,16 +69,17 @@
             <!-- STEP 2 -->
             <div class="step" id="step2">
                 <span class="text-xs font-bold uppercase tracking-widest johner-red">Schritt 2 / 6</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-5 sm:mb-6">Wähle den/die Produkttyp(en):</h2>
-                <div class="grid grid-cols-1 gap-2">
-                    <label class="option-label"><input type="checkbox" name="devType" value="Software"><span class="ml-3 text-base sm:text-lg">Software</span></label>
-                    <label class="option-label"><input type="checkbox" name="devType" value="mobile Anwendung (App)"><span class="ml-3 text-base sm:text-lg">Mobile Anwendung (App)</span></label>
-                    <label class="option-label"><input type="checkbox" name="devType" value="KI-basierte Software"><span class="ml-3 text-base sm:text-lg">KI-basierte Software</span></label>
-                    <label class="option-label"><input type="checkbox" name="devType" value="aktives Medizinprodukt"><span class="ml-3 text-base sm:text-lg">Aktives Medizinprodukt</span></label>
-                    <label class="option-label"><input type="checkbox" name="devType" value="chirurgisches Instrument"><span class="ml-3 text-base sm:text-lg">Chirurgisches Instrument</span></label>
-                    <label class="option-label"><input type="checkbox" name="devType" value="implantierbares Produkt"><span class="ml-3 text-base sm:text-lg">Implantierbares Produkt</span></label>
-                    <label class="option-label"><input type="checkbox" name="devType" value="diagnostisches System"><span class="ml-3 text-base sm:text-lg">Diagnostisches System</span></label>
-                    <label class="option-label"><input type="checkbox" name="devType" value="Überwachungssensor"><span class="ml-3 text-base sm:text-lg">Überwachungssensor</span></label>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Wähle den/die Produkttyp(en):</h2>
+                <p class="text-slate-500 text-sm mb-5">Mehrfachauswahl möglich (z. B. mobile App + KI-basierte Software).</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <label class="option-label"><input type="checkbox" name="devType" value="mobile Anwendung (App)"><span class="ml-3 text-base">Mobile Anwendung (App)</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="Software"><span class="ml-3 text-base">Software</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="Web-Anwendung / Plattform"><span class="ml-3 text-base">Web-Anwendung / Plattform</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="KI-basierte Software"><span class="ml-3 text-base">KI-basierte Software</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="digitales Workflow- und Assistenzsystem"><span class="ml-3 text-base">Digitales Workflow-System</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="Überwachungssensor"><span class="ml-3 text-base">Überwachungssensor</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="diagnostisches System"><span class="ml-3 text-base">Diagnostisches System</span></label>
+                    <label class="option-label"><input type="checkbox" name="devType" value="aktives Medizinprodukt"><span class="ml-3 text-base">Aktives Medizinprodukt</span></label>
                 </div>
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
                     <button type="button" id="btnBack2" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
@@ -88,17 +90,33 @@
             <!-- STEP 3 -->
             <div class="step" id="step3">
                 <span class="text-xs font-bold uppercase tracking-widest johner-red">Schritt 3 / 6</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-5 sm:mb-6">Medizinischer Zweck oder Indikation:</h2>
-                <div class="grid grid-cols-1 gap-2 mb-6">
-                    <label class="option-label"><input type="checkbox" name="purpose" value="Diagnose"><span class="ml-3 text-base sm:text-lg">Diagnose</span></label>
-                    <label class="option-label"><input type="checkbox" name="purpose" value="Vorhersage / Prognose"><span class="ml-3 text-base sm:text-lg">Vorhersage / Prognose</span></label>
-                    <label class="option-label"><input type="checkbox" name="purpose" value="Therapie"><span class="ml-3 text-base sm:text-lg">Therapie</span></label>
-                    <label class="option-label"><input type="checkbox" name="purpose" value="Überwachung"><span class="ml-3 text-base sm:text-lg">Überwachung</span></label>
-                    <label class="option-label"><input type="checkbox" name="purpose" value="Prävention"><span class="ml-3 text-base sm:text-lg">Prävention</span></label>
-                    <label class="option-label"><input type="checkbox" name="purpose" value="Linderung"><span class="ml-3 text-base sm:text-lg">Linderung</span></label>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Zweckbestimmung & klinischer Fokus:</h2>
+                <p class="text-slate-500 text-sm mb-4">Entscheidend für die Einstufung als Medizinprodukt (MDR) vs. klinische Workflow-Lösung.</p>
+                
+                <div class="mb-3">
+                    <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Medizinische Zwecke (MDR-relevant)</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <label class="option-label"><input type="checkbox" name="medPurpose" value="Diagnose"><span class="ml-3 text-base">Diagnose</span></label>
+                        <label class="option-label"><input type="checkbox" name="medPurpose" value="Vorhersage / Prognose"><span class="ml-3 text-base">Vorhersage / Prognose</span></label>
+                        <label class="option-label"><input type="checkbox" name="medPurpose" value="Therapie"><span class="ml-3 text-base">Therapie</span></label>
+                        <label class="option-label"><input type="checkbox" name="medPurpose" value="Überwachung"><span class="ml-3 text-base">Überwachung (Monitoring)</span></label>
+                        <label class="option-label"><input type="checkbox" name="medPurpose" value="Prävention"><span class="ml-3 text-base">Prävention</span></label>
+                        <label class="option-label"><input type="checkbox" name="medPurpose" value="Linderung"><span class="ml-3 text-base">Linderung</span></label>
+                    </div>
                 </div>
-                <label class="block text-xs sm:text-sm font-bold text-slate-500 mb-2 uppercase">Erkrankung, Zustand oder nicht-medizinischer Zweck (Freitext)</label>
-                <input type="text" id="diseaseInput" class="w-full p-3.5 sm:p-4 border-2 border-slate-200 rounded-xl outline-none focus:border-[#cc0000] text-base sm:text-lg" placeholder="z. B. Sepsis, Typ-2-Diabetes oder Dokumentation klinischer Arbeitsabläufe">
+
+                <div class="mb-5">
+                    <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Klinischer Alltag & Abläufe (i. d. R. nicht-medizinisch)</span>
+                    <div class="grid grid-cols-1 gap-2">
+                        <label class="option-label"><input type="checkbox" name="workflowPurpose" value="Optimierung klinischer Abläufe und Ressourcen"><span class="ml-3 text-base">Optimierung klinischer Abläufe & Prozesse</span></label>
+                        <label class="option-label"><input type="checkbox" name="workflowPurpose" value="Koordination der Versorgung und Entlassung"><span class="ml-3 text-base">Versorgungs-, Termin- & Entlasskoordination</span></label>
+                        <label class="option-label"><input type="checkbox" name="workflowPurpose" value="Information, Aufklärung und Begleitung im Behandlungsalltag"><span class="ml-3 text-base">Patienten- & Angehörigeninformation / Begleitung</span></label>
+                    </div>
+                </div>
+
+                <label class="block text-xs sm:text-sm font-bold text-slate-500 mb-2 uppercase">Spezifische Erkrankung, Zustand oder Anwendungsfall (Freitext)</label>
+                <input type="text" id="diseaseInput" class="w-full p-3.5 sm:p-4 border-2 border-slate-200 rounded-xl outline-none focus:border-[#cc0000] text-base" placeholder="z. B. Sepsis-Früherkennung, postoperativer Nachsorge oder Stationsübergabe">
+                
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
                     <button type="button" id="btnBack3" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
                     <button type="button" id="btnNext3" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
@@ -108,12 +126,14 @@
             <!-- STEP 4 -->
             <div class="step" id="step4">
                 <span class="text-xs font-bold uppercase tracking-widest johner-red">Schritt 4 / 6</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-5 sm:mb-6">Wähle die Zielgruppe(n) / Population(en):</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Wähle die Zielgruppe(n) / Population(en):</h2>
+                <p class="text-slate-500 text-sm mb-5">Auf welche Patientengruppe bezieht sich die Anwendung?</p>
                 <div class="grid grid-cols-1 gap-2">
                     <label class="option-label"><input type="checkbox" name="patient" value="Erwachsene (18+)"><span class="ml-3 text-base sm:text-lg">Erwachsene (18+)</span></label>
-                    <label class="option-label"><input type="checkbox" name="patient" value="Kinder und Jugendliche (<18)"><span class="ml-3 text-base sm:text-lg">Kinder und Jugendliche (&lt;18)</span></label>
+                    <label class="option-label"><input type="checkbox" name="patient" value="Kinder und Jugendliche (<18)"><span class="ml-3 text-base sm:text-lg">Kinder und Jugendliche (<18)</span></label>
                     <label class="option-label"><input type="checkbox" name="patient" value="ältere Erwachsene (65+)"><span class="ml-3 text-base sm:text-lg">Ältere Erwachsene (65+)</span></label>
-                    <label class="option-label"><input type="checkbox" name="patient" value="Säuglinge / Kleinkinder (0–3)"><span class="ml-3 text-base sm:text-lg">Säuglinge / Kleinkinder (0–3)</span></label>
+                    <label class="option-label"><input type="checkbox" name="patient" value="Säuglinge und Kleinkinder (0–3)"><span class="ml-3 text-base sm:text-lg">Säuglinge und Kleinkinder (0–3)</span></label>
+                    <label class="option-label"><input type="checkbox" name="patient" value="Patientinnen und Patienten aller Altersgruppen"><span class="ml-3 text-base sm:text-lg">Patientinnen und Patienten aller Altersgruppen</span></label>
                 </div>
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
                     <button type="button" id="btnBack4" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
@@ -124,14 +144,16 @@
             <!-- STEP 5 -->
             <div class="step" id="step5">
                 <span class="text-xs font-bold uppercase tracking-widest johner-red">Schritt 5 / 6</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-5 sm:mb-6">Wähle die vorgesehene(n) Anwender(gruppe):</h2>
-                <div class="grid grid-cols-1 gap-2">
-                    <label class="option-label"><input type="checkbox" name="user" value="Laien"><span class="ml-3 text-base sm:text-lg">Laien</span></label>
-                    <label class="option-label"><input type="checkbox" name="user" value="medizinisches Fachpersonal"><span class="ml-3 text-base sm:text-lg">Medizinisches Fachpersonal</span></label>
-                    <label class="option-label"><input type="checkbox" name="user" value="geschultes klinisches Personal"><span class="ml-3 text-base sm:text-lg">Geschultes klinisches Personal</span></label>
-                    <label class="option-label"><input type="checkbox" name="user" value="Chirurginnen und Chirurgen"><span class="ml-3 text-base sm:text-lg">Chirurginnen und Chirurgen</span></label>
-                    <label class="option-label"><input type="checkbox" name="user" value="Pflegekräfte"><span class="ml-3 text-base sm:text-lg">Pflegekräfte</span></label>
-                    <label class="option-label"><input type="checkbox" name="user" value="Physiotherapeutinnen und Physiotherapeuten"><span class="ml-3 text-base sm:text-lg">Physiotherapeutinnen und Physiotherapeuten</span></label>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Wähle die vorgesehene(n) Anwender(gruppe):</h2>
+                <p class="text-slate-500 text-sm mb-5">Wer bedient die App oder Software im Alltag aktiv?</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <label class="option-label"><input type="checkbox" name="user" value="Patientinnen und Patienten (Laien)"><span class="ml-3 text-base">Patientinnen & Patienten (Laien)</span></label>
+                    <label class="option-label"><input type="checkbox" name="user" value="Angehörigen und Pflegenden"><span class="ml-3 text-base">Angehörige / Pflegende</span></label>
+                    <label class="option-label"><input type="checkbox" name="user" value="Pflegekräften"><span class="ml-3 text-base">Pflegekräfte</span></label>
+                    <label class="option-label"><input type="checkbox" name="user" value="Ärztinnen und Ärzten"><span class="ml-3 text-base">Ärztinnen & Ärzte</span></label>
+                    <label class="option-label"><input type="checkbox" name="user" value="medizinischem Fachpersonal"><span class="ml-3 text-base">Medizinisches Fachpersonal</span></label>
+                    <label class="option-label"><input type="checkbox" name="user" value="klinischen Mitarbeitenden (Stations- und Verwaltungspersonal)"><span class="ml-3 text-base">Klinische Mitarbeitende (Abläufe/Verwaltung)</span></label>
+                    <label class="option-label"><input type="checkbox" name="user" value="Therapeutinnen und Therapeuten"><span class="ml-3 text-base">Therapeutinnen & Therapeuten</span></label>
                 </div>
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
                     <button type="button" id="btnBack5" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
@@ -142,16 +164,17 @@
             <!-- STEP 6 -->
             <div class="step" id="step6">
                 <span class="text-xs font-bold uppercase tracking-widest johner-red">Schritt 6 / 6</span>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-5 sm:mb-6">Wähle die Anwendungsumgebung(en):</h2>
-                <div class="grid grid-cols-1 gap-2">
-                    <label class="option-label"><input type="checkbox" name="env" value="häusliche Pflegeumgebung"><span class="ml-3 text-base sm:text-lg">Häusliche Pflegeumgebung</span></label>
-                    <label class="option-label"><input type="checkbox" name="env" value="klinische Umgebung"><span class="ml-3 text-base sm:text-lg">Klinische Umgebung</span></label>
-                    <label class="option-label"><input type="checkbox" name="env" value="Krankenhäusern"><span class="ml-3 text-base sm:text-lg">Krankenhäusern</span></label>
-                    <label class="option-label"><input type="checkbox" name="env" value="Arztpraxen"><span class="ml-3 text-base sm:text-lg">Arztpraxen</span></label>
-                    <label class="option-label"><input type="checkbox" name="env" value="Intensivstationen"><span class="ml-3 text-base sm:text-lg">Intensivstationen</span></label>
-                    <label class="option-label"><input type="checkbox" name="env" value="Operationssälen"><span class="ml-3 text-base sm:text-lg">Operationssälen</span></label>
-                    <label class="option-label"><input type="checkbox" name="env" value="Notfallversorgungsumgebungen"><span class="ml-3 text-base sm:text-lg">Notfallversorgungsumgebungen</span></label>
-                    <label class="option-label"><input type="checkbox" name="env" value="Bereich Gesundheit und Wohlbefinden von Verbrauchern"><span class="ml-3 text-base sm:text-lg">Bereich Gesundheit und Wohlbefinden von Verbrauchern</span></label>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-2">Wähle die Anwendungsumgebung(en):</h2>
+                <p class="text-slate-500 text-sm mb-5">Wo findet die Nutzung statt?</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <label class="option-label"><input type="checkbox" name="env" value="der häuslichen Umgebung"><span class="ml-3 text-base">Häusliche Umgebung / Alltag</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="dem klinischen Stationsbetrieb"><span class="ml-3 text-base">Klinischer Stationsbetrieb</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="Krankenhäusern"><span class="ml-3 text-base">Krankenhäuser</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="Ambulanzen und Polikliniken"><span class="ml-3 text-base">Ambulanzen & Polikliniken</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="Arztpraxen"><span class="ml-3 text-base">Arztpraxen</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="Intensivstationen"><span class="ml-3 text-base">Intensivstationen</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="Operationssälen"><span class="ml-3 text-base">Operationssäle</span></label>
+                    <label class="option-label"><input type="checkbox" name="env" value="Notfallversorgungsumgebungen"><span class="ml-3 text-base">Notfallversorgung</span></label>
                 </div>
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
                     <button type="button" id="btnBack6" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
@@ -169,9 +192,12 @@
                 </div>
                 <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-3">Formulierte Zweckbestimmung</h2>
                 
-                <div class="p-6 sm:p-8 bg-slate-50 rounded-2xl border-2 border-slate-200 italic text-lg sm:text-xl text-slate-700 leading-relaxed shadow-inner text-left mb-6 result-box">
+                <div class="p-6 sm:p-8 bg-slate-50 rounded-2xl border-2 border-slate-200 italic text-lg sm:text-xl text-slate-700 leading-relaxed shadow-inner text-left mb-5 result-box">
                     <span id="finalText"></span>
                 </div>
+
+                <!-- Regulatorische Ersteinschätzung für die ACCESS-Kohorte -->
+                <div id="regulatoryHintBox" class="p-4 sm:p-5 rounded-xl border text-left mb-6 text-sm leading-relaxed"></div>
 
                 <p class="text-slate-500 text-xs sm:text-sm mb-8 px-2 sm:px-4 leading-relaxed">
                     Dieses Tool erstellt den Kernsatz Ihrer Zweckbestimmung. Für die endgültige regulatorische Zulassung muss dieses Ergebnis um <strong>Kontraindikationen</strong> sowie den <strong>klinischen Nutzen (Stand der Technik)</strong> ergänzt werden.
@@ -206,7 +232,7 @@
     </footer>
 
     <script>
-        // Supabase Konfiguration (sicher gekapselt, falls offline oder geblockt)
+        // Supabase Konfiguration
         const SUPABASE_URL = 'https://icuwbibmhlqpmfgvjibp.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljdXdiaWJtaGxxcG1mZ3ZqaWJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0OTk1NDEsImV4cCI6MjA5MzA3NTU0MX0.8Yo8ueUcOEZt_ZEbIj_OvwCTQ2O3aOfhYxPWT1rq-OI';
         let supabaseClient = null;
@@ -220,14 +246,15 @@
 
         let currentStepIndex = 1;
         let plainFinalTextGlobal = "";
+        let isSubmitting = false;
 
         function escapeHTML(str) {
             return String(str)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+                .replace(/&/g, "&")
+                .replace(/</g, "<")
+                .replace(/>/g, ">")
+                .replace(/"/g, """)
+                .replace(/'/g, "'");
         }
 
         function goToStep(s) {
@@ -251,13 +278,35 @@
             }
         }
 
-        function getCheckedList(name) {
-            const values = Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(function(cb) {
+        function getCheckedValues(name) {
+            return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(function(cb) {
                 return cb.value;
             });
-            if (values.length === 0) return "";
+        }
+
+        function formatList(values) {
+            if (!values || values.length === 0) return "";
             if (values.length === 1) return values[0];
             return values.slice(0, -1).join(", ") + " und " + values.slice(-1);
+        }
+
+        function fallbackCopyText(text, btnText) {
+            const tempArea = document.createElement('textarea');
+            tempArea.value = text;
+            tempArea.style.position = 'fixed';
+            tempArea.style.opacity = '0';
+            document.body.appendChild(tempArea);
+            tempArea.focus();
+            tempArea.select();
+            try {
+                document.execCommand('copy');
+                if (btnText) {
+                    btnText.textContent = "Kopiert!";
+                    setTimeout(function() { btnText.textContent = "Text kopieren"; }, 2000);
+                }
+            } finally {
+                document.body.removeChild(tempArea);
+            }
         }
 
         function copyResult() {
@@ -270,50 +319,76 @@
                         btnText.textContent = "Kopiert!";
                         setTimeout(function() { btnText.textContent = "Text kopieren"; }, 2000);
                     }
+                }).catch(function() {
+                    fallbackCopyText(plainFinalTextGlobal, btnText);
                 });
             } else {
-                const tempArea = document.createElement('textarea');
-                tempArea.value = plainFinalTextGlobal;
-                document.body.appendChild(tempArea);
-                tempArea.select();
-                try {
-                    document.execCommand('copy');
-                    if (btnText) {
-                        btnText.textContent = "Kopiert!";
-                        setTimeout(function() { btnText.textContent = "Text kopieren"; }, 2000);
-                    }
-                } finally {
-                    document.body.removeChild(tempArea);
-                }
+                fallbackCopyText(plainFinalTextGlobal, btnText);
             }
         }
 
-        function buildPurposePart(purposes, diseaseText, patients, isHTML) {
+        function buildPurposePart(medPurposes, workflowPurposes, diseaseText, patients, isHTML) {
             const wrap = function(txt) { return isHTML ? '<strong>' + txt + '</strong>' : txt; };
-            const pPart = purposes ? wrap(purposes) : "";
+            const allPurposes = medPurposes.concat(workflowPurposes);
+            const pPart = allPurposes.length > 0 ? wrap(formatList(allPurposes)) : "";
             const dPart = diseaseText ? wrap(diseaseText) : "";
             const patPart = wrap(patients);
 
             if (pPart && dPart) {
-                return 'Es ist vorgesehen zur ' + pPart + ' bei ' + dPart + ' für ' + patPart + '. ';
+                return 'Es ist vorgesehen zur ' + pPart + ' im Kontext von ' + dPart + ' für ' + patPart + '. ';
             } else if (pPart && !dPart) {
                 return 'Es ist vorgesehen zur ' + pPart + ' für ' + patPart + '. ';
             } else if (!pPart && dPart) {
-                return 'Es ist vorgesehen für ' + dPart + ' bei ' + patPart + '. ';
+                return 'Es ist vorgesehen für ' + dPart + ' für ' + patPart + '. ';
             } else {
-                return 'Es ist vorgesehen für ' + wrap('[Zweckbestimmung / Indikation]') + ' bei ' + patPart + '. ';
+                return 'Es ist vorgesehen für ' + wrap('[Zweckbestimmung / Indikation]') + ' für ' + patPart + '. ';
             }
         }
 
-        function buildEnvironmentPart(environments) {
-            const trimmed = environments.trim();
-            if (trimmed.endsWith("n") || trimmed.endsWith("en")) {
-                return 'in ' + trimmed;
+        function renderRegulatoryHint(medPurposes, workflowPurposes, typesList) {
+            const hintBox = document.getElementById('regulatoryHintBox');
+            if (!hintBox) return;
+
+            const hasMed = medPurposes.length > 0;
+            const hasWorkflow = workflowPurposes.length > 0;
+            const hasAI = typesList.indexOf("KI-basierte Software") !== -1;
+
+            let title = "";
+            let body = "";
+            let boxClasses = "";
+
+            if (hasMed && hasWorkflow) {
+                boxClasses = "bg-amber-50 border-amber-200 text-amber-900";
+                title = "Hinweis: Mischform (Medizinprodukt + Workflow-Funktionen)";
+                body = "Deine Zweckbestimmung kombiniert medizinische Zwecke (" + escapeHTML(formatList(medPurposes)) + ") mit klinischen Ablauf-Funktionen. Nach <strong>MDCG 2019-11</strong> unterliegt das medizinische Modul der <strong>MDR</strong> (bei Apps meist <strong>Klasse IIa nach Regel 11</strong>). Tipp: Trenne nicht-medizinische Workflow-Module architektonisch sauber ab!";
+            } else if (hasMed) {
+                boxClasses = "bg-red-50 border-red-200 text-red-900";
+                title = "Ersteinschätzung: Voraussichtlich Medizinprodukt (MDR)";
+                body = "Durch den medizinischen Zweck (" + escapeHTML(formatList(medPurposes)) + ") greift die <strong>EU-MDR</strong>. Bei eigenständiger Software / Apps führt <strong>Regel 11</strong> in der Regel zu <strong>Klasse IIa</strong> (Benannte Stelle & QMS nach ISO 13485 erforderlich – außer bei reiner Charité-Eigenherstellung nach Art. 5 Abs. 5 MDR).";
+            } else if (hasWorkflow) {
+                boxClasses = "bg-emerald-50 border-emerald-200 text-emerald-900";
+                title = "Ersteinschätzung: Kein Medizinprodukt (Workflow / Support)";
+                body = "Solange die Anwendung Daten nur speichert, kommuniziert, darstellt oder administrative Abläufe organisiert (ohne individuelle diagnostische/therapeutische Berechnung), greift <strong>keine MDR</strong>. Unbedingt beachten: <strong>DSGVO / Datenschutz</strong> (AVV, Rollenkonzept) und Klinik-IT-Sicherheit.";
+            } else {
+                boxClasses = "bg-slate-100 border-slate-200 text-slate-700";
+                title = "Hinweis zur Qualifizierung";
+                body = "Wähle in Schritt 3 mindestens einen Zweck aus, um eine regulatorische Ersteinschätzung (MDR vs. Workflow-Software) zu erhalten.";
             }
-            return 'im ' + trimmed;
+
+            if (hasAI) {
+                body += " <br><span class='inline-block mt-1.5 font-semibold'>+ KI-Hinweis:</span> Durch den Einsatz von KI greifen zusätzlich die Anforderungen des <strong>EU AI Act</strong> (Daten-Governance, Transparenz, Human Oversight).";
+            }
+
+            hintBox.className = "p-4 sm:p-5 rounded-xl border text-left mb-6 text-sm leading-relaxed " + boxClasses;
+            hintBox.innerHTML = '<div class="font-bold mb-1">' + title + '</div><div>' + body + '</div>';
         }
 
         async function finishWizard() {
+            if (isSubmitting) return;
+            isSubmitting = true;
+            const btnFinish = document.getElementById('btnFinish');
+            if (btnFinish) btnFinish.disabled = true;
+
             currentStepIndex = 7;
             const prodInput = document.getElementById('prodName');
             const diseaseInput = document.getElementById('diseaseInput');
@@ -322,26 +397,31 @@
             const plainName = rawName || "[Produkt]";
             const safeName = escapeHTML(plainName);
 
-            const types = getCheckedList('devType') || "Medizinprodukt";
-            const purposes = getCheckedList('purpose');
+            const typesList = getCheckedValues('devType');
+            const types = formatList(typesList) || "digitale Anwendung";
+
+            const medPurposes = getCheckedValues('medPurpose');
+            const workflowPurposes = getCheckedValues('workflowPurpose');
+
             const plainDisease = diseaseInput ? diseaseInput.value.trim() : "";
             const safeDisease = escapeHTML(plainDisease);
 
-            const patients = getCheckedList('patient') || "Patientinnen und Patienten";
-            const users = getCheckedList('user') || "[Anwenderinnen und Anwender]";
-            const environments = getCheckedList('env') || "[Anwendungsumgebungen]";
-            const envPhrase = buildEnvironmentPart(environments);
+            const patients = formatList(getCheckedValues('patient')) || "Patientinnen und Patienten";
+            const users = formatList(getCheckedValues('user')) || "[Anwenderinnen und Anwender]";
+            const environments = formatList(getCheckedValues('env')) || "[Anwendungsumgebungen]";
 
-            const htmlPurposePart = buildPurposePart(purposes, safeDisease, patients, true);
-            const finalSentenceHTML = 'Das Produkt <strong>' + safeName + '</strong> ist ein(e) <strong>' + types + '</strong>. ' + htmlPurposePart + 'Es wird angewendet von <strong>' + users + '</strong> <strong>' + envPhrase + '</strong>.';
+            const htmlPurposePart = buildPurposePart(medPurposes, workflowPurposes, safeDisease, patients, true);
+            const finalSentenceHTML = 'Das Produkt <strong>' + safeName + '</strong> ist ein(e) <strong>' + types + '</strong>. ' + htmlPurposePart + 'Es wird angewendet von <strong>' + users + '</strong> in <strong>' + environments + '</strong>.';
 
-            const plainPurposePart = buildPurposePart(purposes, plainDisease, patients, false);
-            plainFinalTextGlobal = 'Das Produkt ' + plainName + ' ist ein(e) ' + types + '. ' + plainPurposePart + 'Es wird angewendet von ' + users + ' ' + envPhrase + '.';
+            const plainPurposePart = buildPurposePart(medPurposes, workflowPurposes, plainDisease, patients, false);
+            plainFinalTextGlobal = 'Das Produkt ' + plainName + ' ist ein(e) ' + types + '. ' + plainPurposePart + 'Es wird angewendet von ' + users + ' in ' + environments + '.';
 
             const finalTextEl = document.getElementById('finalText');
             if (finalTextEl) {
                 finalTextEl.innerHTML = finalSentenceHTML;
             }
+
+            renderRegulatoryHint(medPurposes, workflowPurposes, typesList);
 
             document.querySelectorAll('.step').forEach(function(el) {
                 el.classList.remove('active');
@@ -361,11 +441,12 @@
             const textPayload =
                 'Produkt: ' + plainName + '\n' +
                 'Produkttypen: ' + types + '\n' +
-                'Zweckbestimmung / Indikation: ' + (purposes || 'Keine (nicht-medizinisch)') + '\n' +
-                'Erkrankung / Zustand / Zweck: ' + (plainDisease || 'Nicht angegeben') + '\n' +
+                'Medizinische Zwecke: ' + (formatList(medPurposes) || 'Keine') + '\n' +
+                'Workflow-Zwecke: ' + (formatList(workflowPurposes) || 'Keine') + '\n' +
+                'Erkrankung / Anwendungsfall: ' + (plainDisease || 'Nicht angegeben') + '\n' +
                 'Zielgruppe: ' + patients + '\n' +
                 'Anwendergruppe: ' + users + '\n' +
-                'Anwendungsumgebung: ' + environments + '\n\n' +
+                'Anwendungsumgebung: in ' + environments + '\n\n' +
                 'Endergebnis:\n' + plainFinalTextGlobal;
 
             if (supabaseClient) {
@@ -381,9 +462,12 @@
                     console.error('Netzwerkfehler:', err);
                 }
             }
+
+            isSubmitting = false;
+            if (btnFinish) btnFinish.disabled = false;
         }
 
-        // Event-Listener sauber registrieren
+        // Event-Listener registrieren
         document.getElementById('btnNext1').addEventListener('click', function() { goToStep(2); });
         document.getElementById('btnBack2').addEventListener('click', function() { goToStep(1); });
         document.getElementById('btnNext2').addEventListener('click', function() { goToStep(3); });
