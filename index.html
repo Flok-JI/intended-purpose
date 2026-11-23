@@ -437,7 +437,6 @@
                 progress.style.width = '100%';
             }
 
-            // Daten anonym in Supabase speichern
             const textPayload =
                 'Produkt: ' + plainName + '\n' +
                 'Produkttypen: ' + types + '\n' +
@@ -467,21 +466,29 @@
             if (btnFinish) btnFinish.disabled = false;
         }
 
-        // Event-Listener registrieren
-        document.getElementById('btnNext1').addEventListener('click', function() { goToStep(2); });
-        document.getElementById('btnBack2').addEventListener('click', function() { goToStep(1); });
-        document.getElementById('btnNext2').addEventListener('click', function() { goToStep(3); });
-        document.getElementById('btnBack3').addEventListener('click', function() { goToStep(2); });
-        document.getElementById('btnNext3').addEventListener('click', function() { goToStep(4); });
-        document.getElementById('btnBack4').addEventListener('click', function() { goToStep(3); });
-        document.getElementById('btnNext4').addEventListener('click', function() { goToStep(5); });
-        document.getElementById('btnBack5').addEventListener('click', function() { goToStep(4); });
-        document.getElementById('btnNext5').addEventListener('click', function() { goToStep(6); });
-        document.getElementById('btnBack6').addEventListener('click', function() { goToStep(5); });
-        document.getElementById('btnFinish').addEventListener('click', finishWizard);
-        document.getElementById('copyBtn').addEventListener('click', copyResult);
-        document.getElementById('printBtn').addEventListener('click', function() { window.print(); });
-        document.getElementById('restartBtn').addEventListener('click', function() { location.reload(); });
+        function bindClick(id, handler) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('click', handler);
+            } else {
+                console.warn('Element mit ID nicht gefunden:', id);
+            }
+        }
+
+        bindClick('btnNext1', function() { goToStep(2); });
+        bindClick('btnBack2', function() { goToStep(1); });
+        bindClick('btnNext2', function() { goToStep(3); });
+        bindClick('btnBack3', function() { goToStep(2); });
+        bindClick('btnNext3', function() { goToStep(4); });
+        bindClick('btnBack4', function() { goToStep(3); });
+        bindClick('btnNext4', function() { goToStep(5); });
+        bindClick('btnBack5', function() { goToStep(4); });
+        bindClick('btnNext5', function() { goToStep(6); });
+        bindClick('btnBack6', function() { goToStep(5); });
+        bindClick('btnFinish', finishWizard);
+        bindClick('copyBtn', copyResult);
+        bindClick('printBtn', function() { window.print(); });
+        bindClick('restartBtn', function() { location.reload(); });
 
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
