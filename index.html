@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zweckbestimmungs-Generator | Johner Institut</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Supabase JS Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'DM Sans', sans-serif; background-color: #f7f9fc; }
         .johner-red { color: #cc0000; }
@@ -25,7 +22,6 @@
         .option-label:hover { background-color: #f8fafc; border-color: #e2e8f0; }
         input[type="checkbox"]:checked + span { font-weight: 600; color: #cc0000; }
 
-        /* PDF / PRINT STYLES */
         @media print {
             body { background-color: white !important; }
             .no-print, button, .progress-bar, #progress, .flex.justify-between, .flex.justify-end { display: none !important; }
@@ -62,7 +58,7 @@
                 <p class="text-slate-500 text-sm mb-5">Gib den Arbeits- oder Projektnamen deiner App, Software oder Lösung ein.</p>
                 <input type="text" id="prodName" class="w-full p-3.5 sm:p-4 border-2 border-slate-200 rounded-xl text-lg sm:text-xl outline-none focus:border-[#cc0000] transition-colors" placeholder="z. B. CareFlow App oder Stroke Scan" autofocus>
                 <div class="flex justify-end mt-8 sm:mt-10">
-                    <button type="button" id="btnNext1" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover transition-all shadow-md text-base sm:text-lg">Weiter →</button>
+                    <button type="button" onclick="next(2)" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover transition-all shadow-md text-base sm:text-lg">Weiter →</button>
                 </div>
             </div>
 
@@ -82,8 +78,8 @@
                     <label class="option-label"><input type="checkbox" name="devType" value="aktives Medizinprodukt"><span class="ml-3 text-base">Aktives Medizinprodukt</span></label>
                 </div>
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
-                    <button type="button" id="btnBack2" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
-                    <button type="button" id="btnNext2" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
+                    <button type="button" onclick="next(1)" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
+                    <button type="button" onclick="next(3)" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
                 </div>
             </div>
 
@@ -118,8 +114,8 @@
                 <input type="text" id="diseaseInput" class="w-full p-3.5 sm:p-4 border-2 border-slate-200 rounded-xl outline-none focus:border-[#cc0000] text-base" placeholder="z. B. Sepsis-Früherkennung, postoperativer Nachsorge oder Stationsübergabe">
                 
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
-                    <button type="button" id="btnBack3" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
-                    <button type="button" id="btnNext3" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
+                    <button type="button" onclick="next(2)" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
+                    <button type="button" onclick="next(4)" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
                 </div>
             </div>
 
@@ -136,8 +132,8 @@
                     <label class="option-label"><input type="checkbox" name="patient" value="Patientinnen und Patienten aller Altersgruppen"><span class="ml-3 text-base sm:text-lg">Patientinnen und Patienten aller Altersgruppen</span></label>
                 </div>
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
-                    <button type="button" id="btnBack4" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
-                    <button type="button" id="btnNext4" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
+                    <button type="button" onclick="next(3)" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
+                    <button type="button" onclick="next(5)" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
                 </div>
             </div>
 
@@ -156,8 +152,8 @@
                     <label class="option-label"><input type="checkbox" name="user" value="Therapeutinnen und Therapeuten"><span class="ml-3 text-base">Therapeutinnen & Therapeuten</span></label>
                 </div>
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
-                    <button type="button" id="btnBack5" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
-                    <button type="button" id="btnNext5" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
+                    <button type="button" onclick="next(4)" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
+                    <button type="button" onclick="next(6)" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
                 </div>
             </div>
 
@@ -177,8 +173,8 @@
                     <label class="option-label"><input type="checkbox" name="env" value="Notfallversorgungsumgebungen"><span class="ml-3 text-base">Notfallversorgung</span></label>
                 </div>
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
-                    <button type="button" id="btnBack6" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
-                    <button type="button" id="btnFinish" class="johner-bg-red text-white px-7 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Ergebnis generieren</button>
+                    <button type="button" onclick="next(5)" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
+                    <button type="button" onclick="finish()" class="johner-bg-red text-white px-7 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Ergebnis generieren</button>
                 </div>
                 <p class="text-xs text-slate-400 text-center mt-5">
                     Hinweis: Eingaben werden für die Live-Durchsicht im Workshop anonym gespeichert. Bitte keine vertraulichen Betriebsgeheimnisse (IP) oder Patientendaten eingeben.
@@ -196,7 +192,6 @@
                     <span id="finalText"></span>
                 </div>
 
-                <!-- Regulatorische Ersteinschätzung für die ACCESS-Kohorte -->
                 <div id="regulatoryHintBox" class="p-4 sm:p-5 rounded-xl border text-left mb-6 text-sm leading-relaxed"></div>
 
                 <p class="text-slate-500 text-xs sm:text-sm mb-8 px-2 sm:px-4 leading-relaxed">
@@ -205,11 +200,11 @@
 
                 <div class="flex flex-col items-center justify-center border-t border-slate-100 pt-6 sm:pt-8 no-print">
                     <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-center mb-6">
-                        <button type="button" id="copyBtn" class="bg-slate-800 hover:bg-slate-900 text-white px-8 py-3.5 rounded-xl font-bold transition-all shadow-md text-base sm:text-lg flex items-center justify-center gap-2">
+                        <button type="button" onclick="copyResult()" class="bg-slate-800 hover:bg-slate-900 text-white px-8 py-3.5 rounded-xl font-bold transition-all shadow-md text-base sm:text-lg flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             <span id="copyBtnText">Text kopieren</span>
                         </button>
-                        <button type="button" id="printBtn" class="johner-bg-red text-white px-8 py-3.5 rounded-xl font-bold johner-btn-hover transition-all shadow-md text-base sm:text-lg flex items-center justify-center gap-2">
+                        <button type="button" onclick="window.print()" class="johner-bg-red text-white px-8 py-3.5 rounded-xl font-bold johner-btn-hover transition-all shadow-md text-base sm:text-lg flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                             PDF herunterladen
                         </button>
@@ -222,7 +217,7 @@
                     </a>
                 </div>
 
-                <button type="button" id="restartBtn" class="mt-8 sm:mt-10 text-xs sm:text-sm font-bold johner-red hover:underline uppercase tracking-widest no-print">Neu starten</button>
+                <button type="button" onclick="location.reload()" class="mt-8 sm:mt-10 text-xs sm:text-sm font-bold johner-red hover:underline uppercase tracking-widest no-print">Neu starten</button>
             </div>
         </div>
     </div>
@@ -232,7 +227,6 @@
     </footer>
 
     <script>
-        // Supabase Konfiguration
         const SUPABASE_URL = 'https://icuwbibmhlqpmfgvjibp.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljdXdiaWJtaGxxcG1mZ3ZqaWJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0OTk1NDEsImV4cCI6MjA5MzA3NTU0MX0.8Yo8ueUcOEZt_ZEbIj_OvwCTQ2O3aOfhYxPWT1rq-OI';
         let supabaseClient = null;
@@ -246,42 +240,32 @@
 
         let currentStepIndex = 1;
         let plainFinalTextGlobal = "";
-        let isSubmitting = false;
 
-        function escapeHTML(str) {
-            return String(str)
-                .replace(/&/g, "&")
-                .replace(/</g, "<")
-                .replace(/>/g, ">")
-                .replace(/"/g, """)
-                .replace(/'/g, "'");
-        }
-
-        function goToStep(s) {
-            currentStepIndex = s;
-            document.querySelectorAll('.step').forEach(function(el) {
-                el.classList.remove('active');
-            });
-
-            const target = document.getElementById('step' + s);
-            if (target) {
-                target.classList.add('active');
-                const input = target.querySelector('input[type="text"]');
-                if (input) {
-                    setTimeout(function() { input.focus(); }, 50);
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                if (currentStepIndex < 6) {
+                    next(currentStepIndex + 1);
+                } else if (currentStepIndex === 6) {
+                    finish();
                 }
             }
+        });
 
-            const progress = document.getElementById('progress');
-            if (progress) {
-                progress.style.width = ((s / 6) * 100) + '%';
-            }
+        function next(s) {
+            currentStepIndex = s;
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            const target = document.getElementById('step' + s) || document.getElementById(s);
+            if (target) target.classList.add('active');
+
+            const maxSteps = 6;
+            document.getElementById('progress').style.width = (s / maxSteps * 100) + '%';
+
+            const input = target ? target.querySelector('input[type="text"]') : null;
+            if (input) input.focus();
         }
 
         function getCheckedValues(name) {
-            return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(function(cb) {
-                return cb.value;
-            });
+            return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
         }
 
         function formatList(values) {
@@ -290,68 +274,11 @@
             return values.slice(0, -1).join(", ") + " und " + values.slice(-1);
         }
 
-        function fallbackCopyText(text, btnText) {
-            const tempArea = document.createElement('textarea');
-            tempArea.value = text;
-            tempArea.style.position = 'fixed';
-            tempArea.style.opacity = '0';
-            document.body.appendChild(tempArea);
-            tempArea.focus();
-            tempArea.select();
-            try {
-                document.execCommand('copy');
-                if (btnText) {
-                    btnText.textContent = "Kopiert!";
-                    setTimeout(function() { btnText.textContent = "Text kopieren"; }, 2000);
-                }
-            } finally {
-                document.body.removeChild(tempArea);
-            }
-        }
-
-        function copyResult() {
-            if (!plainFinalTextGlobal) return;
-            const btnText = document.getElementById('copyBtnText');
-
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(plainFinalTextGlobal).then(function() {
-                    if (btnText) {
-                        btnText.textContent = "Kopiert!";
-                        setTimeout(function() { btnText.textContent = "Text kopieren"; }, 2000);
-                    }
-                }).catch(function() {
-                    fallbackCopyText(plainFinalTextGlobal, btnText);
-                });
-            } else {
-                fallbackCopyText(plainFinalTextGlobal, btnText);
-            }
-        }
-
-        function buildPurposePart(medPurposes, workflowPurposes, diseaseText, patients, isHTML) {
-            const wrap = function(txt) { return isHTML ? '<strong>' + txt + '</strong>' : txt; };
-            const allPurposes = medPurposes.concat(workflowPurposes);
-            const pPart = allPurposes.length > 0 ? wrap(formatList(allPurposes)) : "";
-            const dPart = diseaseText ? wrap(diseaseText) : "";
-            const patPart = wrap(patients);
-
-            if (pPart && dPart) {
-                return 'Es ist vorgesehen zur ' + pPart + ' im Kontext von ' + dPart + ' für ' + patPart + '. ';
-            } else if (pPart && !dPart) {
-                return 'Es ist vorgesehen zur ' + pPart + ' für ' + patPart + '. ';
-            } else if (!pPart && dPart) {
-                return 'Es ist vorgesehen für ' + dPart + ' für ' + patPart + '. ';
-            } else {
-                return 'Es ist vorgesehen für ' + wrap('[Zweckbestimmung / Indikation]') + ' für ' + patPart + '. ';
-            }
-        }
-
         function renderRegulatoryHint(medPurposes, workflowPurposes, typesList) {
             const hintBox = document.getElementById('regulatoryHintBox');
-            if (!hintBox) return;
-
             const hasMed = medPurposes.length > 0;
             const hasWorkflow = workflowPurposes.length > 0;
-            const hasAI = typesList.indexOf("KI-basierte Software") !== -1;
+            const hasAI = typesList.includes("KI-basierte Software");
 
             let title = "";
             let body = "";
@@ -360,11 +287,11 @@
             if (hasMed && hasWorkflow) {
                 boxClasses = "bg-amber-50 border-amber-200 text-amber-900";
                 title = "Hinweis: Mischform (Medizinprodukt + Workflow-Funktionen)";
-                body = "Deine Zweckbestimmung kombiniert medizinische Zwecke (" + escapeHTML(formatList(medPurposes)) + ") mit klinischen Ablauf-Funktionen. Nach <strong>MDCG 2019-11</strong> unterliegt das medizinische Modul der <strong>MDR</strong> (bei Apps meist <strong>Klasse IIa nach Regel 11</strong>). Tipp: Trenne nicht-medizinische Workflow-Module architektonisch sauber ab!";
+                body = `Deine Zweckbestimmung kombiniert medizinische Zwecke (${formatList(medPurposes)}) mit klinischen Ablauf-Funktionen. Nach <strong>MDCG 2019-11</strong> unterliegt das medizinische Modul der <strong>MDR</strong> (bei Apps meist <strong>Klasse IIa nach Regel 11</strong>). Tipp: Trenne nicht-medizinische Workflow-Module architektonisch sauber ab!`;
             } else if (hasMed) {
                 boxClasses = "bg-red-50 border-red-200 text-red-900";
                 title = "Ersteinschätzung: Voraussichtlich Medizinprodukt (MDR)";
-                body = "Durch den medizinischen Zweck (" + escapeHTML(formatList(medPurposes)) + ") greift die <strong>EU-MDR</strong>. Bei eigenständiger Software / Apps führt <strong>Regel 11</strong> in der Regel zu <strong>Klasse IIa</strong> (Benannte Stelle & QMS nach ISO 13485 erforderlich – außer bei reiner Charité-Eigenherstellung nach Art. 5 Abs. 5 MDR).";
+                body = `Durch den medizinischen Zweck (${formatList(medPurposes)}) greift die <strong>EU-MDR</strong>. Bei eigenständiger Software / Apps führt <strong>Regel 11</strong> in der Regel zu <strong>Klasse IIa</strong> (Benannte Stelle & QMS nach ISO 13485 erforderlich – außer bei reiner Charité-Eigenherstellung nach Art. 5 Abs. 5 MDR).`;
             } else if (hasWorkflow) {
                 boxClasses = "bg-emerald-50 border-emerald-200 text-emerald-900";
                 title = "Ersteinschätzung: Kein Medizinprodukt (Workflow / Support)";
@@ -380,130 +307,79 @@
             }
 
             hintBox.className = "p-4 sm:p-5 rounded-xl border text-left mb-6 text-sm leading-relaxed " + boxClasses;
-            hintBox.innerHTML = '<div class="font-bold mb-1">' + title + '</div><div>' + body + '</div>';
+            hintBox.innerHTML = `<div class="font-bold mb-1">${title}</div><div>${body}</div>`;
         }
 
-        async function finishWizard() {
-            if (isSubmitting) return;
-            isSubmitting = true;
-            const btnFinish = document.getElementById('btnFinish');
-            if (btnFinish) btnFinish.disabled = true;
+        function copyResult() {
+            if (!plainFinalTextGlobal) return;
+            const btnText = document.getElementById('copyBtnText');
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(plainFinalTextGlobal).then(() => {
+                    btnText.textContent = "Kopiert!";
+                    setTimeout(() => { btnText.textContent = "Text kopieren"; }, 2000);
+                });
+            } else {
+                const tempArea = document.createElement('textarea');
+                tempArea.value = plainFinalTextGlobal;
+                document.body.appendChild(tempArea);
+                tempArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempArea);
+                btnText.textContent = "Kopiert!";
+                setTimeout(() => { btnText.textContent = "Text kopieren"; }, 2000);
+            }
+        }
 
+        async function finish() {
             currentStepIndex = 7;
-            const prodInput = document.getElementById('prodName');
-            const diseaseInput = document.getElementById('diseaseInput');
-
-            const rawName = prodInput ? prodInput.value.trim() : "";
-            const plainName = rawName || "[Produkt]";
-            const safeName = escapeHTML(plainName);
-
+            const name = document.getElementById('prodName').value.trim() || "[Produkt]";
             const typesList = getCheckedValues('devType');
             const types = formatList(typesList) || "digitale Anwendung";
 
             const medPurposes = getCheckedValues('medPurpose');
             const workflowPurposes = getCheckedValues('workflowPurpose');
+            const allPurposes = medPurposes.concat(workflowPurposes);
+            const purposes = formatList(allPurposes);
 
-            const plainDisease = diseaseInput ? diseaseInput.value.trim() : "";
-            const safeDisease = escapeHTML(plainDisease);
-
+            const disease = document.getElementById('diseaseInput').value.trim();
             const patients = formatList(getCheckedValues('patient')) || "Patientinnen und Patienten";
             const users = formatList(getCheckedValues('user')) || "[Anwenderinnen und Anwender]";
             const environments = formatList(getCheckedValues('env')) || "[Anwendungsumgebungen]";
 
-            const htmlPurposePart = buildPurposePart(medPurposes, workflowPurposes, safeDisease, patients, true);
-            const finalSentenceHTML = 'Das Produkt <strong>' + safeName + '</strong> ist ein(e) <strong>' + types + '</strong>. ' + htmlPurposePart + 'Es wird angewendet von <strong>' + users + '</strong> in <strong>' + environments + '</strong>.';
-
-            const plainPurposePart = buildPurposePart(medPurposes, workflowPurposes, plainDisease, patients, false);
-            plainFinalTextGlobal = 'Das Produkt ' + plainName + ' ist ein(e) ' + types + '. ' + plainPurposePart + 'Es wird angewendet von ' + users + ' in ' + environments + '.';
-
-            const finalTextEl = document.getElementById('finalText');
-            if (finalTextEl) {
-                finalTextEl.innerHTML = finalSentenceHTML;
+            let purposePart = "";
+            if (purposes && disease) {
+                purposePart = `Es ist vorgesehen zur <strong>${purposes}</strong> im Kontext von <strong>${disease}</strong> für <strong>${patients}</strong>. `;
+            } else if (purposes && !disease) {
+                purposePart = `Es ist vorgesehen zur <strong>${purposes}</strong> für <strong>${patients}</strong>. `;
+            } else if (!purposes && disease) {
+                purposePart = `Es ist vorgesehen für <strong>${disease}</strong> für <strong>${patients}</strong>. `;
+            } else {
+                purposePart = `Es ist vorgesehen für <strong>[Zweckbestimmung / Indikation]</strong> für <strong>${patients}</strong>. `;
             }
 
+            const finalSentence = `Das Produkt <strong>${name}</strong> ist ein(e) <strong>${types}</strong>. ${purposePart}Es wird angewendet von <strong>${users}</strong> in <strong>${environments}</strong>.`;
+            plainFinalTextGlobal = finalSentence.replace(/<[^>]+>/g, '');
+
+            document.getElementById('finalText').innerHTML = finalSentence;
             renderRegulatoryHint(medPurposes, workflowPurposes, typesList);
 
-            document.querySelectorAll('.step').forEach(function(el) {
-                el.classList.remove('active');
-            });
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            document.getElementById('result').classList.add('active');
+            document.getElementById('progress').style.width = '100%';
 
-            const resultEl = document.getElementById('result');
-            if (resultEl) {
-                resultEl.classList.add('active');
-            }
-
-            const progress = document.getElementById('progress');
-            if (progress) {
-                progress.style.width = '100%';
-            }
-
-            const textPayload =
-                'Produkt: ' + plainName + '\n' +
-                'Produkttypen: ' + types + '\n' +
-                'Medizinische Zwecke: ' + (formatList(medPurposes) || 'Keine') + '\n' +
-                'Workflow-Zwecke: ' + (formatList(workflowPurposes) || 'Keine') + '\n' +
-                'Erkrankung / Anwendungsfall: ' + (plainDisease || 'Nicht angegeben') + '\n' +
-                'Zielgruppe: ' + patients + '\n' +
-                'Anwendergruppe: ' + users + '\n' +
-                'Anwendungsumgebung: in ' + environments + '\n\n' +
-                'Endergebnis:\n' + plainFinalTextGlobal;
+            const textPayload = `Produkt: ${name}\nProdukttypen: ${types}\nMedizinische Zwecke: ${formatList(medPurposes) || 'Keine'}\nWorkflow-Zwecke: ${formatList(workflowPurposes) || 'Keine'}\nErkrankung / Anwendungsfall: ${disease || 'Nicht angegeben'}\nZielgruppe: ${patients}\nAnwendergruppe: ${users}\nAnwendungsumgebung: in ${environments}\n\nEndergebnis:\n${plainFinalTextGlobal}`;
 
             if (supabaseClient) {
                 try {
                     const { error } = await supabaseClient
                         .from('submissions')
                         .insert([{ content: textPayload }]);
-
-                    if (error) {
-                        console.error('Supabase Fehler beim Speichern:', error.message);
-                    }
+                    if (error) console.error('Supabase Fehler beim Speichern:', error.message);
                 } catch (err) {
                     console.error('Netzwerkfehler:', err);
                 }
             }
-
-            isSubmitting = false;
-            if (btnFinish) btnFinish.disabled = false;
         }
-
-        function bindClick(id, handler) {
-            const el = document.getElementById(id);
-            if (el) {
-                el.addEventListener('click', handler);
-            } else {
-                console.warn('Element mit ID nicht gefunden:', id);
-            }
-        }
-
-        bindClick('btnNext1', function() { goToStep(2); });
-        bindClick('btnBack2', function() { goToStep(1); });
-        bindClick('btnNext2', function() { goToStep(3); });
-        bindClick('btnBack3', function() { goToStep(2); });
-        bindClick('btnNext3', function() { goToStep(4); });
-        bindClick('btnBack4', function() { goToStep(3); });
-        bindClick('btnNext4', function() { goToStep(5); });
-        bindClick('btnBack5', function() { goToStep(4); });
-        bindClick('btnNext5', function() { goToStep(6); });
-        bindClick('btnBack6', function() { goToStep(5); });
-        bindClick('btnFinish', finishWizard);
-        bindClick('copyBtn', copyResult);
-        bindClick('printBtn', function() { window.print(); });
-        bindClick('restartBtn', function() { location.reload(); });
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                const active = document.activeElement;
-                const tag = active ? active.tagName.toLowerCase() : '';
-                if (tag === 'button' || tag === 'a') return;
-
-                event.preventDefault();
-                if (currentStepIndex >= 1 && currentStepIndex < 6) {
-                    goToStep(currentStepIndex + 1);
-                } else if (currentStepIndex === 6) {
-                    finishWizard();
-                }
-            }
-        });
     </script>
 </body>
 </html>
