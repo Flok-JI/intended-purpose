@@ -61,7 +61,7 @@
                 <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-5 sm:mb-6">Wie lautet der Produktname?</h2>
                 <input type="text" id="prodName" class="w-full p-3.5 sm:p-4 border-2 border-slate-200 rounded-xl text-lg sm:text-xl outline-none focus:border-[#cc0000] transition-colors" placeholder="z. B. Nexus App" autofocus>
                 <div class="flex justify-end mt-8 sm:mt-10">
-                    <button type="button" onclick="next(2)" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover transition-all shadow-md text-base sm:text-lg">Weiter →</button>
+                    <button type="button" id="btnNext1" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover transition-all shadow-md text-base sm:text-lg">Weiter →</button>
                 </div>
             </div>
 
@@ -80,8 +80,8 @@
                     <label class="option-label"><input type="checkbox" name="devType" value="Überwachungssensor"><span class="ml-3 text-base sm:text-lg">Überwachungssensor</span></label>
                 </div>
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
-                    <button type="button" onclick="next(1)" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
-                    <button type="button" onclick="next(3)" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
+                    <button type="button" id="btnBack2" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
+                    <button type="button" id="btnNext2" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
                 </div>
             </div>
 
@@ -100,8 +100,8 @@
                 <label class="block text-xs sm:text-sm font-bold text-slate-500 mb-2 uppercase">Erkrankung, Zustand oder nicht-medizinischer Zweck (Freitext)</label>
                 <input type="text" id="diseaseInput" class="w-full p-3.5 sm:p-4 border-2 border-slate-200 rounded-xl outline-none focus:border-[#cc0000] text-base sm:text-lg" placeholder="z. B. Sepsis, Typ-2-Diabetes oder Dokumentation klinischer Arbeitsabläufe">
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
-                    <button type="button" onclick="next(2)" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
-                    <button type="button" onclick="next(4)" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
+                    <button type="button" id="btnBack3" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
+                    <button type="button" id="btnNext3" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
                 </div>
             </div>
 
@@ -111,13 +111,13 @@
                 <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-5 sm:mb-6">Wähle die Zielgruppe(n) / Population(en):</h2>
                 <div class="grid grid-cols-1 gap-2">
                     <label class="option-label"><input type="checkbox" name="patient" value="Erwachsene (18+)"><span class="ml-3 text-base sm:text-lg">Erwachsene (18+)</span></label>
-                    <label class="option-label"><input type="checkbox" name="patient" value="Kinder und Jugendliche (<18)"><span class="ml-3 text-base sm:text-lg">Kinder und Jugendliche (<18)</span></label>
+                    <label class="option-label"><input type="checkbox" name="patient" value="Kinder und Jugendliche (<18)"><span class="ml-3 text-base sm:text-lg">Kinder und Jugendliche (&lt;18)</span></label>
                     <label class="option-label"><input type="checkbox" name="patient" value="ältere Erwachsene (65+)"><span class="ml-3 text-base sm:text-lg">Ältere Erwachsene (65+)</span></label>
                     <label class="option-label"><input type="checkbox" name="patient" value="Säuglinge / Kleinkinder (0–3)"><span class="ml-3 text-base sm:text-lg">Säuglinge / Kleinkinder (0–3)</span></label>
                 </div>
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
-                    <button type="button" onclick="next(3)" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
-                    <button type="button" onclick="next(5)" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
+                    <button type="button" id="btnBack4" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
+                    <button type="button" id="btnNext4" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
                 </div>
             </div>
 
@@ -134,8 +134,8 @@
                     <label class="option-label"><input type="checkbox" name="user" value="Physiotherapeutinnen und Physiotherapeuten"><span class="ml-3 text-base sm:text-lg">Physiotherapeutinnen und Physiotherapeuten</span></label>
                 </div>
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
-                    <button type="button" onclick="next(4)" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
-                    <button type="button" onclick="next(6)" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
+                    <button type="button" id="btnBack5" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
+                    <button type="button" id="btnNext5" class="johner-bg-red text-white px-8 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Weiter →</button>
                 </div>
             </div>
 
@@ -154,8 +154,8 @@
                     <label class="option-label"><input type="checkbox" name="env" value="Bereich Gesundheit und Wohlbefinden von Verbrauchern"><span class="ml-3 text-base sm:text-lg">Bereich Gesundheit und Wohlbefinden von Verbrauchern</span></label>
                 </div>
                 <div class="flex justify-between items-center mt-8 sm:mt-10">
-                    <button type="button" onclick="next(5)" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
-                    <button type="button" onclick="finish()" class="johner-bg-red text-white px-7 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Ergebnis generieren</button>
+                    <button type="button" id="btnBack6" class="text-slate-400 font-bold hover:text-slate-600 text-base sm:text-lg">← Zurück</button>
+                    <button type="button" id="btnFinish" class="johner-bg-red text-white px-7 sm:px-10 py-3 sm:py-3.5 rounded-xl font-bold johner-btn-hover shadow-md text-base sm:text-lg">Ergebnis generieren</button>
                 </div>
                 <p class="text-xs text-slate-400 text-center mt-5">
                     Hinweis: Eingaben werden für die Live-Durchsicht im Workshop anonym gespeichert. Bitte keine vertraulichen Betriebsgeheimnisse (IP) oder Patientendaten eingeben.
@@ -179,24 +179,24 @@
 
                 <div class="flex flex-col items-center justify-center border-t border-slate-100 pt-6 sm:pt-8 no-print">
                     <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-center mb-6">
-                        <button type="button" id="copyBtn" onclick="copyResult()" class="bg-slate-800 hover:bg-slate-900 text-white px-8 py-3.5 rounded-xl font-bold transition-all shadow-md text-base sm:text-lg flex items-center justify-center gap-2">
+                        <button type="button" id="copyBtn" class="bg-slate-800 hover:bg-slate-900 text-white px-8 py-3.5 rounded-xl font-bold transition-all shadow-md text-base sm:text-lg flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             <span id="copyBtnText">Text kopieren</span>
                         </button>
-                        <button type="button" onclick="window.print()" class="johner-bg-red text-white px-8 py-3.5 rounded-xl font-bold johner-btn-hover transition-all shadow-md text-base sm:text-lg flex items-center justify-center gap-2">
+                        <button type="button" id="printBtn" class="johner-bg-red text-white px-8 py-3.5 rounded-xl font-bold johner-btn-hover transition-all shadow-md text-base sm:text-lg flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                             PDF herunterladen
                         </button>
                     </div>
                     
                     <h3 class="text-xs sm:text-sm font-bold text-slate-400 uppercase tracking-widest mb-3 text-center">Weiterführende regulatorische Informationen</h3>
-                    <a href="https://blog.johner-institute.com/regulatory-affairs/intended-purpose/" target="_blank" class="text-blue-600 hover:underline flex items-center font-medium text-sm sm:text-base">
+                    <a href="https://blog.johner-institute.com/regulatory-affairs/intended-purpose/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline flex items-center font-medium text-sm sm:text-base">
                         Johner Institute: Ratgeber Zweckbestimmung
                         <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                     </a>
                 </div>
 
-                <button type="button" onclick="location.reload()" class="mt-8 sm:mt-10 text-xs sm:text-sm font-bold johner-red hover:underline uppercase tracking-widest no-print">Neu starten</button>
+                <button type="button" id="restartBtn" class="mt-8 sm:mt-10 text-xs sm:text-sm font-bold johner-red hover:underline uppercase tracking-widest no-print">Neu starten</button>
             </div>
         </div>
     </div>
@@ -206,59 +206,55 @@
     </footer>
 
     <script>
-        // Supabase Konfiguration
+        // Supabase Konfiguration (sicher gekapselt, falls offline oder geblockt)
         const SUPABASE_URL = 'https://icuwbibmhlqpmfgvjibp.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljdXdiaWJtaGxxcG1mZ3ZqaWJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0OTk1NDEsImV4cCI6MjA5MzA3NTU0MX0.8Yo8ueUcOEZt_ZEbIj_OvwCTQ2O3aOfhYxPWT1rq-OI';
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        let supabaseClient = null;
+        try {
+            if (window.supabase && typeof window.supabase.createClient === 'function') {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+        } catch (e) {
+            console.warn('Supabase konnte nicht initialisiert werden:', e);
+        }
 
         let currentStepIndex = 1;
         let plainFinalTextGlobal = "";
 
         function escapeHTML(str) {
-            return str
-                .replace(/&/g, "&")
-                .replace(/</g, "<")
-                .replace(/>/g, ">")
-                .replace(/"/g, """)
-                .replace(/'/g, "'");
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
-                if (activeTag === 'button') return;
-                event.preventDefault();
-                if (currentStepIndex < 6) {
-                    next(currentStepIndex + 1);
-                } else if (currentStepIndex === 6) {
-                    finish();
-                }
-            }
-        });
-
-        function next(s) {
+        function goToStep(s) {
             currentStepIndex = s;
-            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-            
+            document.querySelectorAll('.step').forEach(function(el) {
+                el.classList.remove('active');
+            });
+
             const target = document.getElementById('step' + s);
             if (target) {
                 target.classList.add('active');
+                const input = target.querySelector('input[type="text"]');
+                if (input) {
+                    setTimeout(function() { input.focus(); }, 50);
+                }
             }
-            
-            const maxSteps = 6;
+
             const progress = document.getElementById('progress');
             if (progress) {
-                progress.style.width = (s / maxSteps * 100) + '%';
-            }
-            
-            if (target) {
-                const input = target.querySelector('input[type="text"]');
-                if (input) input.focus();
+                progress.style.width = ((s / 6) * 100) + '%';
             }
         }
 
         function getCheckedList(name) {
-            const values = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(cb => cb.value);
+            const values = Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(function(cb) {
+                return cb.value;
+            });
             if (values.length === 0) return "";
             if (values.length === 1) return values[0];
             return values.slice(0, -1).join(", ") + " und " + values.slice(-1);
@@ -266,86 +262,157 @@
 
         function copyResult() {
             if (!plainFinalTextGlobal) return;
-            navigator.clipboard.writeText(plainFinalTextGlobal).then(() => {
-                const btnText = document.getElementById('copyBtnText');
-                btnText.textContent = "Kopiert!";
-                setTimeout(() => {
-                    btnText.textContent = "Text kopieren";
-                }, 2000);
-            });
+            const btnText = document.getElementById('copyBtnText');
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(plainFinalTextGlobal).then(function() {
+                    if (btnText) {
+                        btnText.textContent = "Kopiert!";
+                        setTimeout(function() { btnText.textContent = "Text kopieren"; }, 2000);
+                    }
+                });
+            } else {
+                const tempArea = document.createElement('textarea');
+                tempArea.value = plainFinalTextGlobal;
+                document.body.appendChild(tempArea);
+                tempArea.select();
+                try {
+                    document.execCommand('copy');
+                    if (btnText) {
+                        btnText.textContent = "Kopiert!";
+                        setTimeout(function() { btnText.textContent = "Text kopieren"; }, 2000);
+                    }
+                } finally {
+                    document.body.removeChild(tempArea);
+                }
+            }
         }
 
         function buildPurposePart(purposes, diseaseText, patients, isHTML) {
-            const wrap = (txt) => isHTML ? `<strong>${txt}</strong>` : txt;
+            const wrap = function(txt) { return isHTML ? '<strong>' + txt + '</strong>' : txt; };
             const pPart = purposes ? wrap(purposes) : "";
             const dPart = diseaseText ? wrap(diseaseText) : "";
             const patPart = wrap(patients);
 
             if (pPart && dPart) {
-                return `Es ist vorgesehen zur ${pPart} bei ${dPart} für ${patPart}. `;
+                return 'Es ist vorgesehen zur ' + pPart + ' bei ' + dPart + ' für ' + patPart + '. ';
             } else if (pPart && !dPart) {
-                return `Es ist vorgesehen zur ${pPart} für ${patPart}. `;
+                return 'Es ist vorgesehen zur ' + pPart + ' für ' + patPart + '. ';
             } else if (!pPart && dPart) {
-                return `Es ist vorgesehen für ${dPart} bei ${patPart}. `;
+                return 'Es ist vorgesehen für ' + dPart + ' bei ' + patPart + '. ';
             } else {
-                return `Es ist vorgesehen für ${wrap("[Zweckbestimmung / Indikation]")} bei ${patPart}. `;
+                return 'Es ist vorgesehen für ' + wrap('[Zweckbestimmung / Indikation]') + ' bei ' + patPart + '. ';
             }
         }
 
         function buildEnvironmentPart(environments) {
             const trimmed = environments.trim();
             if (trimmed.endsWith("n") || trimmed.endsWith("en")) {
-                return `in ${trimmed}`;
+                return 'in ' + trimmed;
             }
-            return `im ${trimmed}`;
+            return 'im ' + trimmed;
         }
 
-        async function finish() {
+        async function finishWizard() {
             currentStepIndex = 7;
-            const rawName = document.getElementById('prodName').value.trim();
+            const prodInput = document.getElementById('prodName');
+            const diseaseInput = document.getElementById('diseaseInput');
+
+            const rawName = prodInput ? prodInput.value.trim() : "";
             const plainName = rawName || "[Produkt]";
             const safeName = escapeHTML(plainName);
-            
+
             const types = getCheckedList('devType') || "Medizinprodukt";
             const purposes = getCheckedList('purpose');
-            const rawDisease = document.getElementById('diseaseInput').value.trim();
-            const plainDisease = rawDisease;
+            const plainDisease = diseaseInput ? diseaseInput.value.trim() : "";
             const safeDisease = escapeHTML(plainDisease);
-            
+
             const patients = getCheckedList('patient') || "Patientinnen und Patienten";
             const users = getCheckedList('user') || "[Anwenderinnen und Anwender]";
             const environments = getCheckedList('env') || "[Anwendungsumgebungen]";
             const envPhrase = buildEnvironmentPart(environments);
 
             const htmlPurposePart = buildPurposePart(purposes, safeDisease, patients, true);
-            const finalSentenceHTML = `Das Produkt <strong>${safeName}</strong> ist ein(e) <strong>${types}</strong>. ${htmlPurposePart}Es wird angewendet von <strong>${users}</strong> <strong>${envPhrase}</strong>.`;
+            const finalSentenceHTML = 'Das Produkt <strong>' + safeName + '</strong> ist ein(e) <strong>' + types + '</strong>. ' + htmlPurposePart + 'Es wird angewendet von <strong>' + users + '</strong> <strong>' + envPhrase + '</strong>.';
 
             const plainPurposePart = buildPurposePart(purposes, plainDisease, patients, false);
-            plainFinalTextGlobal = `Das Produkt ${plainName} ist ein(e) ${types}. ${plainPurposePart}Es wird angewendet von ${users} ${envPhrase}.`;
+            plainFinalTextGlobal = 'Das Produkt ' + plainName + ' ist ein(e) ' + types + '. ' + plainPurposePart + 'Es wird angewendet von ' + users + ' ' + envPhrase + '.';
 
-            document.getElementById('finalText').innerHTML = finalSentenceHTML;
+            const finalTextEl = document.getElementById('finalText');
+            if (finalTextEl) {
+                finalTextEl.innerHTML = finalSentenceHTML;
+            }
 
-            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-            document.getElementById('result').classList.add('active');
-            document.getElementById('progress').style.width = '100%';
+            document.querySelectorAll('.step').forEach(function(el) {
+                el.classList.remove('active');
+            });
 
-            // --- DATEN AUTOMATISCH IN SUPABASE SPEICHERN ---
-            const textPayload = `Produkt: ${plainName}\nProdukttypen: ${types}\nZweckbestimmung / Indikation: ${purposes || 'Keine (nicht-medizinisch)'}\nErkrankung / Zustand / Zweck: ${plainDisease || 'Nicht angegeben'}\nZielgruppe: ${patients}\nAnwendergruppe: ${users}\nAnwendungsumgebung: ${environments}\n\nEndergebnis:\n${plainFinalTextGlobal}`;
+            const resultEl = document.getElementById('result');
+            if (resultEl) {
+                resultEl.classList.add('active');
+            }
 
-            try {
-                const { error } = await supabaseClient
-                    .from('submissions')
-                    .insert([{ content: textPayload }]);
+            const progress = document.getElementById('progress');
+            if (progress) {
+                progress.style.width = '100%';
+            }
 
-                if (error) {
-                    console.error('Supabase Fehler beim Speichern:', error.message);
-                } else {
-                    console.log('Erfolgreich in Supabase gespeichert!');
+            // Daten anonym in Supabase speichern
+            const textPayload =
+                'Produkt: ' + plainName + '\n' +
+                'Produkttypen: ' + types + '\n' +
+                'Zweckbestimmung / Indikation: ' + (purposes || 'Keine (nicht-medizinisch)') + '\n' +
+                'Erkrankung / Zustand / Zweck: ' + (plainDisease || 'Nicht angegeben') + '\n' +
+                'Zielgruppe: ' + patients + '\n' +
+                'Anwendergruppe: ' + users + '\n' +
+                'Anwendungsumgebung: ' + environments + '\n\n' +
+                'Endergebnis:\n' + plainFinalTextGlobal;
+
+            if (supabaseClient) {
+                try {
+                    const { error } = await supabaseClient
+                        .from('submissions')
+                        .insert([{ content: textPayload }]);
+
+                    if (error) {
+                        console.error('Supabase Fehler beim Speichern:', error.message);
+                    }
+                } catch (err) {
+                    console.error('Netzwerkfehler:', err);
                 }
-            } catch (err) {
-                console.error('Netzwerkfehler:', err);
             }
         }
+
+        // Event-Listener sauber registrieren
+        document.getElementById('btnNext1').addEventListener('click', function() { goToStep(2); });
+        document.getElementById('btnBack2').addEventListener('click', function() { goToStep(1); });
+        document.getElementById('btnNext2').addEventListener('click', function() { goToStep(3); });
+        document.getElementById('btnBack3').addEventListener('click', function() { goToStep(2); });
+        document.getElementById('btnNext3').addEventListener('click', function() { goToStep(4); });
+        document.getElementById('btnBack4').addEventListener('click', function() { goToStep(3); });
+        document.getElementById('btnNext4').addEventListener('click', function() { goToStep(5); });
+        document.getElementById('btnBack5').addEventListener('click', function() { goToStep(4); });
+        document.getElementById('btnNext5').addEventListener('click', function() { goToStep(6); });
+        document.getElementById('btnBack6').addEventListener('click', function() { goToStep(5); });
+        document.getElementById('btnFinish').addEventListener('click', finishWizard);
+        document.getElementById('copyBtn').addEventListener('click', copyResult);
+        document.getElementById('printBtn').addEventListener('click', function() { window.print(); });
+        document.getElementById('restartBtn').addEventListener('click', function() { location.reload(); });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                const active = document.activeElement;
+                const tag = active ? active.tagName.toLowerCase() : '';
+                if (tag === 'button' || tag === 'a') return;
+
+                event.preventDefault();
+                if (currentStepIndex >= 1 && currentStepIndex < 6) {
+                    goToStep(currentStepIndex + 1);
+                } else if (currentStepIndex === 6) {
+                    finishWizard();
+                }
+            }
+        });
     </script>
 </body>
 </html>
