@@ -188,11 +188,9 @@
                 </div>
                 <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mb-3">Formulierte Zweckbestimmung</h2>
                 
-                <div class="p-6 sm:p-8 bg-slate-50 rounded-2xl border-2 border-slate-200 italic text-lg sm:text-xl text-slate-700 leading-relaxed shadow-inner text-left mb-5 result-box">
+                <div class="p-6 sm:p-8 bg-slate-50 rounded-2xl border-2 border-slate-200 italic text-lg sm:text-xl text-slate-700 leading-relaxed shadow-inner text-left mb-6 result-box">
                     <span id="finalText"></span>
                 </div>
-
-                <div id="regulatoryHintBox" class="p-4 sm:p-5 rounded-xl border text-left mb-6 text-sm leading-relaxed"></div>
 
                 <p class="text-slate-500 text-xs sm:text-sm mb-8 px-2 sm:px-4 leading-relaxed">
                     Dieses Tool erstellt den Kernsatz Ihrer Zweckbestimmung. Für die endgültige regulatorische Zulassung muss dieses Ergebnis um <strong>Kontraindikationen</strong> sowie den <strong>klinischen Nutzen (Stand der Technik)</strong> ergänzt werden.
@@ -274,42 +272,6 @@
             return values.slice(0, -1).join(", ") + " und " + values.slice(-1);
         }
 
-        function renderRegulatoryHint(medPurposes, workflowPurposes, typesList) {
-            const hintBox = document.getElementById('regulatoryHintBox');
-            const hasMed = medPurposes.length > 0;
-            const hasWorkflow = workflowPurposes.length > 0;
-            const hasAI = typesList.includes("KI-basierte Software");
-
-            let title = "";
-            let body = "";
-            let boxClasses = "";
-
-            if (hasMed && hasWorkflow) {
-                boxClasses = "bg-amber-50 border-amber-200 text-amber-900";
-                title = "Hinweis: Mischform (Medizinprodukt + Workflow-Funktionen)";
-                body = `Deine Zweckbestimmung kombiniert medizinische Zwecke (${formatList(medPurposes)}) mit klinischen Ablauf-Funktionen. Nach <strong>MDCG 2019-11</strong> unterliegt das medizinische Modul der <strong>MDR</strong> (bei Apps meist <strong>Klasse IIa nach Regel 11</strong>). Tipp: Trenne nicht-medizinische Workflow-Module architektonisch sauber ab!`;
-            } else if (hasMed) {
-                boxClasses = "bg-red-50 border-red-200 text-red-900";
-                title = "Ersteinschätzung: Voraussichtlich Medizinprodukt (MDR)";
-                body = `Durch den medizinischen Zweck (${formatList(medPurposes)}) greift die <strong>EU-MDR</strong>. Bei eigenständiger Software / Apps führt <strong>Regel 11</strong> in der Regel zu <strong>Klasse IIa</strong> (Benannte Stelle & QMS nach ISO 13485 erforderlich – außer bei reiner Charité-Eigenherstellung nach Art. 5 Abs. 5 MDR).`;
-            } else if (hasWorkflow) {
-                boxClasses = "bg-emerald-50 border-emerald-200 text-emerald-900";
-                title = "Ersteinschätzung: Kein Medizinprodukt (Workflow / Support)";
-                body = "Solange die Anwendung Daten nur speichert, kommuniziert, darstellt oder administrative Abläufe organisiert (ohne individuelle diagnostische/therapeutische Berechnung), greift <strong>keine MDR</strong>. Unbedingt beachten: <strong>DSGVO / Datenschutz</strong> (AVV, Rollenkonzept) und Klinik-IT-Sicherheit.";
-            } else {
-                boxClasses = "bg-slate-100 border-slate-200 text-slate-700";
-                title = "Hinweis zur Qualifizierung";
-                body = "Wähle in Schritt 3 mindestens einen Zweck aus, um eine regulatorische Ersteinschätzung (MDR vs. Workflow-Software) zu erhalten.";
-            }
-
-            if (hasAI) {
-                body += " <br><span class='inline-block mt-1.5 font-semibold'>+ KI-Hinweis:</span> Durch den Einsatz von KI greifen zusätzlich die Anforderungen des <strong>EU AI Act</strong> (Daten-Governance, Transparenz, Human Oversight).";
-            }
-
-            hintBox.className = "p-4 sm:p-5 rounded-xl border text-left mb-6 text-sm leading-relaxed " + boxClasses;
-            hintBox.innerHTML = `<div class="font-bold mb-1">${title}</div><div>${body}</div>`;
-        }
-
         function copyResult() {
             if (!plainFinalTextGlobal) return;
             const btnText = document.getElementById('copyBtnText');
@@ -361,7 +323,6 @@
             plainFinalTextGlobal = finalSentence.replace(/<[^>]+>/g, '');
 
             document.getElementById('finalText').innerHTML = finalSentence;
-            renderRegulatoryHint(medPurposes, workflowPurposes, typesList);
 
             document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
             document.getElementById('result').classList.add('active');
